@@ -21,6 +21,17 @@ Fonctionalités :
 
 ## TODO : Décrivez votre projet
 Montrez qu'il mobilise des techniques de POO avancée
+
+Par exemple pour les ingrédients on a une classe abstraite Ingredient avec des sous-classes qui hérite d'ingrédient (Champignons, Fromage, Tomates...)
+Par exemple pour certains ingrédients on aura des interfaces spécifiques comme EstCommerstibleCru ou PeutEtreCuit
+
 Comment allez-vous utiliser les patrons de conception ?
+
+Notre Singleton est notre personage
+Notre Décorateur permet de spécifier nos meubles de la cuisine (Ce bloc est une table, un four, une poubelle...)
+Notre bridge pourrait servir pour les couleurs de blocs et items de la map
+Notre Flyweight pour la génération des blocs et ingrédients pour une meilleure opti (Comme on a plusieurs choses pareil)
+
 Comment allez-vous utiliser l'architecture MVC ?
 
+Modèle pour les classes objets, vue pour les panels et controllers pour gérer les évenements
