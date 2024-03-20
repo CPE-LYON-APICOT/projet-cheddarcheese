@@ -20,7 +20,7 @@ public class App extends Application{
         MainController controller = new MainController(primaryStage, model);
         MainView view = new MainView(model, controller);
 
-        Scene scene = new Scene(view, 500, 500);
+        Scene scene = new Scene(view, 576, 576);
         primaryStage.setTitle("Cheddar-Cheese");
         primaryStage.setScene(scene);
         primaryStage.show();
