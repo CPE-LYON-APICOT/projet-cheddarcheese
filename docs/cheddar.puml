@@ -1,0 +1,62 @@
+class Player{
+    Item holding
+    double xPos
+    double yPos
+    int orientation
+}
+
+interface cuttable{}
+
+interface cookable{}
+
+
+abstract class Item{}
+
+
+abstract class Ingredient extends Item{}
+
+class Dough extends Ingredient{}
+
+class Cheese extends Ingredient implements cuttable{}
+
+class Tomato extends Ingredient implements cuttable{}
+
+class Pepperoni extends Ingredient{}
+
+
+abstract class Recipe extends Item{
+    Ingredient[] ingredients
+}
+
+class Pizza extends Recipe implements cookable{}
+
+class Plate extends Item{}
+
+class Order{
+    Recipe order
+    int duration
+}
+
+class Map{
+    Tile[][] tiles
+}
+
+class Tile{
+    string sprite
+}
+
+class Table extends Tile{}
+
+class Bin extends Tile{}
+
+class Furnace extends Tile{}
+
+class Sink extends Tile{}
+
+class CuttingTable extends Table{}
+
+class Deposit extends Tile{}
+
+class IngredientCrate extends Tile{
+    Ingredient item
+}
