@@ -35,3 +35,7 @@ Notre Flyweight pour la génération des blocs et ingrédients pour une meilleur
 Comment allez-vous utiliser l'architecture MVC ?
 
 Modèle pour les classes objets, vue pour les panels et controllers pour gérer les évenements
+
+@annotation pour les ingredietns et leurs états
+
+Faire la map pour la prochaine fois
