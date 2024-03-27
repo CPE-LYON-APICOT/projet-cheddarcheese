@@ -1,12 +1,17 @@
 package cheddarcheese;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -20,6 +25,7 @@ public class App extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         GridPane game = new GridPane();
+        Pane playerPane = new Pane();
         
         SpriteManager spriteManager = new SpriteManager();
 
@@ -33,10 +39,6 @@ public class App extends Application{
         String path8 = "sprites/inventory.png";
         String path9 = "sprites/floor.png";
         String pathN = path0;
-
-        int FPS = 60;
-        double interval = 1000000000/FPS;
-        double nextInterval = System.nanoTime() + interval;
 
         GameMap map = new GameMap();
         map.loadMap("map");
@@ -60,7 +62,7 @@ public class App extends Application{
             }
         }
 
-        Scene scene = new Scene(game, 9 * 64, 9 * 64);
+        Scene scene = new Scene(new Group(game, playerPane), 9 * 64, 9 * 64);
         stage.setScene(scene);
         stage.setTitle("Cheddar Cheese");
         stage.show();
@@ -68,8 +70,31 @@ public class App extends Application{
         String pathC = "sprites/char_s1.png";
         ImageView spriteC = spriteManager.createNewSprite(pathC);
 
-        Player character = new Player(spriteC);
-        character.reloadSpriteAtPos(game, 1, 1);
+        Player character = new Player(spriteC, playerPane);
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            KeyCode keyPressed = event.getCode();
+
+            switch (keyPressed) {
+                case Z:
+                    character.moveUp();
+                    break;
+                case S:
+                    character.moveDown();
+                    break;
+                case Q:
+                    character.moveLeft();
+                    break;
+                case D:
+                    character.moveRight();
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
     }
 
     static void setRoot(String fxml) throws IOException {
