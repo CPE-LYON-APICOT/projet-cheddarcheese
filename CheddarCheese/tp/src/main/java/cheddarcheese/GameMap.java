@@ -1,44 +1,48 @@
 package cheddarcheese;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Random;
 
 public class GameMap {
-    int tiles[][];
+    private int tiles[][];
 
     public GameMap() {
     }
 
     public void loadMap(String mapName){
-        try {
-            String filePath = "Map/" + mapName + ".txt";
-            File file = new File(filePath);
-            Scanner scanner = new Scanner(file);
+        try{
+            InputStream is = getClass().getResourceAsStream("/map/"+mapName+".txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-            int rows = Integer.parseInt(scanner.nextLine());
-            int columns = Integer.parseInt(scanner.nextLine());
+            int c = 0;
+            int r = 0;
 
-            tiles = new int[rows][columns];
+            while(c < 9 && r < 9){
+                String line = br.readLine();
 
-            for (int i = 0; i < rows; i++) {
-                String[] rowData = scanner.nextLine().split("   ");
-                for (int j = 0; j < columns; j++) {
-                    tiles[i][j] = Integer.parseInt(rowData[j]);
+                while(c < 9) {
+                    String values[] = line.split("  ");
+
+                    int val = Integer.parseInt(values[c]);
+
+                    tiles[c][r] = val;
+                    c++;
+                }
+                if(c == 9){
+                    c = 0;
+                    r++;
                 }
             }
+            br.close();
+        } catch(Exception e) {
 
-            scanner.close();
+        }  
+    }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: Map file not found.");
-            e.printStackTrace();
-
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Invalid map data format.");
-            e.printStackTrace();
-
-        }
+    public int[][] getTiles(){
+        return tiles;
     }
     
 }
