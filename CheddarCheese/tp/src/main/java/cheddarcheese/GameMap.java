@@ -43,5 +43,4 @@ public class GameMap {
     public int[][] getTiles(){
         return tiles;
     }
-    
 }
