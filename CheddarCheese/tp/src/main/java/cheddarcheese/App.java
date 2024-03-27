@@ -20,21 +20,22 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        ImageView imageView = new ImageView();
+        GridPane game = new GridPane();
+        
+        SpriteManager spriteManager = new SpriteManager();
 
-        // Créer une mise en page pour contenir l'ImageView
-        GridPane root = new GridPane();
-        root.getChildren().add(imageView);
+        String path1 = "sprites/floor.png";
+        ImageView sprite1 = spriteManager.createNewSprite(path1);
+        game.add(sprite1, 0, 0);
 
-        // Créer une scène avec la mise en page et la montrer
-        Scene scene = new Scene(root, 400, 300);
+        String path2 = "sprites/floor.png";
+        ImageView sprite2 = spriteManager.createNewSprite(path2);
+        game.add(sprite2, 1, 0);
+
+        Scene scene = new Scene(game, 9 * 64, 9 * 64);
         stage.setScene(scene);
-        stage.setTitle("Image Display");
+        stage.setTitle("Cheddar Cheese");
         stage.show();
-
-        // Utiliser la classe ImageController pour afficher l'image
-        SpriteManager imageController = new SpriteManager();
-        imageController.afficherImage(imageView);
     }
 
     static void setRoot(String fxml) throws IOException {
