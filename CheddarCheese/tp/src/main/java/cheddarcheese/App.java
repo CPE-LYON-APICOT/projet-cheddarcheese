@@ -6,10 +6,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+
+import cheddarcheese.Tiles.Tile;
+import cheddarcheese.Tiles.Floor;
+import cheddarcheese.Tiles.FoodboxClosed;
+import cheddarcheese.Tiles.Inventory;
+import cheddarcheese.Tiles.Wall;
+import cheddarcheese.Tiles.Table;
+import cheddarcheese.Tiles.Bin;
+import cheddarcheese.Tiles.CuttingTable;
+import cheddarcheese.Tiles.Deposit;
 
 /**
  * JavaFX App
@@ -24,42 +33,40 @@ public class App extends Application {
         
         SpriteManager spriteManager = new SpriteManager();
 
-        String path0 = "sprites/floor.png";
-        String path1 = "sprites/wall.png";
-        String path2 = "sprites/table.png";
-        String path3 = "sprites/cutting_table.png";
-        String path4 = "sprites/deposit.png";
-        String path5 = "sprites/bin.png";
-        String path6 = "sprites/foodbox_closed.png";
-        String path8 = "sprites/inventory.png";
-        String path9 = "sprites/floor.png";
-        String pathN = path0;
-        //ImageView sprite1 = spriteManager.createNewSprite(path1);
-        //game.add(sprite1, 0, 0);
-
-        //String path2 = "sprites/floor.png";
-        //ImageView sprite2 = spriteManager.createNewSprite(path2);
-        //game.add(sprite2, 1, 0);
+        Floor floor = new Floor("Floor", "sprites/floor.png", 0, 0);
+        Wall wall = new Wall("Wall", "sprites/wall.png", 0, 0);
+        Table table = new Table("Table", "sprites/table.png", 0, 0);
+        CuttingTable cuttingTable = new CuttingTable("CuttingTable", "sprites/cutting_table.png", 0, 0);
+        Deposit deposit = new Deposit("Deposit", "sprites/deposit.png", 0, 0);
+        Bin bin = new Bin("Bin", "sprites/bin.png", 0, 0);
+        FoodboxClosed foodboxClosed = new FoodboxClosed("FoodboxClosed", "sprites/foodbox_closed.png", 0, 0);
+        Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
 
         GameMap map = new GameMap();
         map.loadMap("map");
         int mapTiles[][] = map.getTiles();
+        
+        /*
+         * Generate the map
+         */
+        for(int i = 0; i < 9;i++){
+            for(int j = 0; j < 9; j++) {
 
-        for(int i = 0; i< 9;i++){
-            for(int j = 0; j < 9; j++){
-                switch(mapTiles[i][j]){
-                    case 0: pathN = path0; break;
-                    case 1: pathN = path1; break;
-                    case 2: pathN = path2; break;
-                    case 3: pathN = path3; break;
-                    case 4: pathN = path4; break;
-                    case 5: pathN = path5; break;
-                    case 6: pathN = path6; break;
-                    case 8: pathN = path8; break;
-                    case 9: pathN = path9; break;
+                Tile tile = new Tile("Tile", floor.getPath(), i, j);
+                
+                switch(mapTiles[i][j]) {
+                    case 0: tile.setPath(floor.getPath()); break;
+                    case 1: tile.setPath(wall.getPath()); break;
+                    case 2: tile.setPath(table.getPath()); break;
+                    case 3: tile.setPath(cuttingTable.getPath()); break;
+                    case 4: tile.setPath(deposit.getPath()); break;
+                    case 5: tile.setPath(bin.getPath()); break;
+                    case 6: tile.setPath(foodboxClosed.getPath()); break;
+                    case 8: tile.setPath(inventory.getPath()); break;
+                    case 9: tile.setPath(floor.getPath()); break;
                 }
-                ImageView spriteN = spriteManager.createNewSprite(pathN);
-                game.add(spriteN, i, j);
+                ImageView spriteN = spriteManager.createNewSprite(tile.getPath());
+                game.add(spriteN, tile.getX(), tile.getY());
             }
         }
 
