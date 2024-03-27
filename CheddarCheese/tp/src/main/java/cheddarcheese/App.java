@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class App extends Application{
 
     private static Scene scene;
 
@@ -34,12 +33,10 @@ public class App extends Application {
         String path8 = "sprites/inventory.png";
         String path9 = "sprites/floor.png";
         String pathN = path0;
-        //ImageView sprite1 = spriteManager.createNewSprite(path1);
-        //game.add(sprite1, 0, 0);
 
-        //String path2 = "sprites/floor.png";
-        //ImageView sprite2 = spriteManager.createNewSprite(path2);
-        //game.add(sprite2, 1, 0);
+        int FPS = 60;
+        double interval = 1000000000/FPS;
+        double nextInterval = System.nanoTime() + interval;
 
         GameMap map = new GameMap();
         map.loadMap("map");
@@ -67,6 +64,12 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Cheddar Cheese");
         stage.show();
+
+        String pathC = "sprites/char_s1.png";
+        ImageView spriteC = spriteManager.createNewSprite(pathC);
+
+        Player character = new Player(spriteC);
+        character.reloadSpriteAtPos(game, 1, 1);
     }
 
     static void setRoot(String fxml) throws IOException {
