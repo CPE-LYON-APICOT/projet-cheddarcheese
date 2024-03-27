@@ -39,38 +39,16 @@ public class App extends Application{
         
         SpriteManager spriteManager = new SpriteManager();
 
-        Floor floor = new Floor("Floor", "sprites/floor.png", 0, 0);
-        Wall wall = new Wall("Wall", "sprites/wall.png", 0, 0);
-        Table table = new Table("Table", "sprites/table.png", 0, 0);
-        CuttingTable cuttingTable = new CuttingTable("CuttingTable", "sprites/cutting_table.png", 0, 0);
-        Deposit deposit = new Deposit("Deposit", "sprites/deposit.png", 0, 0);
-        Bin bin = new Bin("Bin", "sprites/bin.png", 0, 0);
-        FoodboxClosed foodboxClosed = new FoodboxClosed("FoodboxClosed", "sprites/foodbox_closed.png", 0, 0);
-        Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
-
         GameMap map = new GameMap();
         map.loadMap("map");
-        int mapTiles[][] = map.getTiles();
+        Tile mapTiles[][] = map.getTiles();
         
         /*
          * Generate the map
          */
         for(int i = 0; i < 9;i++){
             for(int j = 0; j < 9; j++) {
-
-                Tile tile = new Tile("Tile", floor.getPath(), i, j);
-                
-                switch(mapTiles[i][j]) {
-                    case 0: tile.setPath(floor.getPath()); break;
-                    case 1: tile.setPath(wall.getPath()); break;
-                    case 2: tile.setPath(table.getPath()); break;
-                    case 3: tile.setPath(cuttingTable.getPath()); break;
-                    case 4: tile.setPath(deposit.getPath()); break;
-                    case 5: tile.setPath(bin.getPath()); break;
-                    case 6: tile.setPath(foodboxClosed.getPath()); break;
-                    case 8: tile.setPath(inventory.getPath()); break;
-                    case 9: tile.setPath(floor.getPath()); break;
-                }
+                Tile tile = mapTiles[i][j];
                 ImageView spriteN = spriteManager.createNewSprite(tile.getPath());
                 game.add(spriteN, tile.getX(), tile.getY());
             }
