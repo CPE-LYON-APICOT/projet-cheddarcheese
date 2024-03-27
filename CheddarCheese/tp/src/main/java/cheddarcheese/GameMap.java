@@ -3,17 +3,17 @@ package cheddarcheese;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Random;
 
 public class GameMap {
     private int tiles[][];
 
     public GameMap() {
+        tiles = new int[9][9];
     }
 
     public void loadMap(String mapName){
         try{
-            InputStream is = getClass().getResourceAsStream("/map/"+mapName+".txt");
+            InputStream is = getClass().getResourceAsStream("Map/"+mapName+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int c = 0;
@@ -23,8 +23,7 @@ public class GameMap {
                 String line = br.readLine();
 
                 while(c < 9) {
-                    String values[] = line.split("  ");
-
+                    String values[] = line.split("\\s+");
                     int val = Integer.parseInt(values[c]);
 
                     tiles[c][r] = val;
@@ -37,7 +36,7 @@ public class GameMap {
             }
             br.close();
         } catch(Exception e) {
-
+            e.printStackTrace();
         }  
     }
 

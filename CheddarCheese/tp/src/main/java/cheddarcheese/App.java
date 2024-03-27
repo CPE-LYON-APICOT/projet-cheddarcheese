@@ -25,13 +25,13 @@ public class App extends Application {
         SpriteManager spriteManager = new SpriteManager();
 
         String path0 = "sprites/floor.png";
-        String path1 = "sprites/floor.png";
-        String path2 = "sprites/floor.png";
-        String path3 = "sprites/floor.png";
-        String path4 = "sprites/floor.png";
-        String path5 = "sprites/floor.png";
-        String path6 = "sprites/floor.png";
-        String path8 = "sprites/floor.png";
+        String path1 = "sprites/wall.png";
+        String path2 = "sprites/table.png";
+        String path3 = "sprites/cutting_table.png";
+        String path4 = "sprites/deposit.png";
+        String path5 = "sprites/bin.png";
+        String path6 = "sprites/foodbox_closed.png";
+        String path8 = "sprites/inventory.png";
         String path9 = "sprites/floor.png";
         String pathN = path0;
         //ImageView sprite1 = spriteManager.createNewSprite(path1);
@@ -46,18 +46,17 @@ public class App extends Application {
         int mapTiles[][] = map.getTiles();
 
         for(int i = 0; i< 9;i++){
-            for(int j = 0; i < 9; j++){
+            for(int j = 0; j < 9; j++){
                 switch(mapTiles[i][j]){
-                    case 0 : pathN = path0;
-                    case 1 : pathN = path1;
-                    case 2 : pathN = path2;
-                    case 3 : pathN = path3;
-                    case 4 : pathN = path4;
-                    case 5 : pathN = path5;
-                    case 6 : pathN = path6;
-                    case 8 : pathN = path8;
-                    case 9 : pathN = path9;
-                    default : pathN = path0;
+                    case 0: pathN = path0; break;
+                    case 1: pathN = path1; break;
+                    case 2: pathN = path2; break;
+                    case 3: pathN = path3; break;
+                    case 4: pathN = path4; break;
+                    case 5: pathN = path5; break;
+                    case 6: pathN = path6; break;
+                    case 8: pathN = path8; break;
+                    case 9: pathN = path9; break;
                 }
                 ImageView spriteN = spriteManager.createNewSprite(pathN);
                 game.add(spriteN, i, j);
