@@ -1,9 +1,10 @@
 package cheddarcheese;
 
-import cheddarcheese.Tiles.Floor;
+import cheddarcheese.Tiles.CuttingTable;
+import cheddarcheese.Tiles.InteractTile;
 import cheddarcheese.Tiles.Tile;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class Player {
@@ -37,23 +38,31 @@ public class Player {
     }
 
     public void moveDown(){
-        collisionCheck(xPos, yPos + speed, 'S');
+        collisionCheck(xPos, yPos + speed);
+        orientation = 'S';
         updateImagePosition();
+        setImage("char_s1.png");
     }
 
     public void moveUp(){
-        collisionCheck(xPos, yPos - speed, 'N');
+        collisionCheck(xPos, yPos - speed);
+        orientation = 'N';
         updateImagePosition();
+        setImage("char_n1.png");
     }
 
     public void moveRight(){
-        collisionCheck(xPos + speed, yPos, 'E');
+        collisionCheck(xPos + speed, yPos);
+        orientation = 'E';
         updateImagePosition();
+        setImage("char_e1.png");
     }
 
     public void moveLeft(){
-        collisionCheck(xPos - speed, yPos, 'W');
+        collisionCheck(xPos - speed, yPos);
+        orientation = 'W';
         updateImagePosition();
+        setImage("char_w1.png");
     }
 
     private void updateImagePosition() {
@@ -61,7 +70,7 @@ public class Player {
         image.setLayoutY(yPos);
     }
 
-    private void collisionCheck(double nXpos, double nYpos, char direction) {
+    private void collisionCheck(double nXpos, double nYpos) {
         int tileX = (int) (nXpos / 64); 
         int tileY = (int) (nYpos / 64); 
     
@@ -70,4 +79,36 @@ public class Player {
             yPos = nYpos;
         }
     }
+
+    public void interactWithTile() {
+        int xCoord = (int) xPos/64;
+        int yCoord = (int) yPos/64;
+
+        switch (orientation) {
+            case 'S':
+                yCoord++; 
+                break;
+            case 'N':
+                yCoord--;
+                break;
+            case 'E':
+                xCoord++;
+                break;
+            case 'W':
+                xCoord--;
+                break;
+            default:
+                return;
+        }
+
+        Tile block = tileset[xCoord][yCoord];
+
+        if(block instanceof InteractTile) ((InteractTile) block).interact(this);
+    }
+
+    private void setImage(String filename) {
+        Image playerImage = new Image(getClass().getResourceAsStream("sprites/" + filename));
+        image.setImage(playerImage);
+    }
+    
 }

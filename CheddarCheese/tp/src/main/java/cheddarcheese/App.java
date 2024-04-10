@@ -16,14 +16,6 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 import cheddarcheese.Tiles.Tile;
-import cheddarcheese.Tiles.Floor;
-import cheddarcheese.Tiles.FoodboxClosed;
-import cheddarcheese.Tiles.Inventory;
-import cheddarcheese.Tiles.Wall;
-import cheddarcheese.Tiles.Table;
-import cheddarcheese.Tiles.Bin;
-import cheddarcheese.Tiles.CuttingTable;
-import cheddarcheese.Tiles.Deposit;
 
 /**
  * JavaFX App
@@ -81,6 +73,9 @@ public class App extends Application{
                     break;
                 case D:
                     character.moveRight();
+                    break;
+                case L:
+                    character.interactWithTile();
                     break;
                 default:
                     break;

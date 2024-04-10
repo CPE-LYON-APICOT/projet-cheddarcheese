@@ -1,7 +1,14 @@
 package cheddarcheese.Tiles;
 
-public class CuttingTable extends Tile {
+import cheddarcheese.Player;
+
+public class CuttingTable extends Tile implements InteractTile{
     public CuttingTable(String label, String path, int x, int y) {
         super(label, path, x, y);
+    }
+
+    @Override
+    public void interact(Player p) {
+        System.out.println("CuttingTable");
     }
 }

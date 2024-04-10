@@ -1,7 +1,5 @@
 package cheddarcheese.Tiles;
 
-import javafx.scene.image.ImageView;
-
 public class Tile {
     private String label;
     private String path;
@@ -22,5 +20,5 @@ public class Tile {
     public int getY() {return y;}
     public String getPath() {return path;}
     public String getLabel() {return label;}
-    public void setPath(String path) {this.path = path;};
+    public void setPath(String path) {this.path = path;}
 }

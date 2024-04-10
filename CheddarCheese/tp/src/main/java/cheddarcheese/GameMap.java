@@ -23,7 +23,7 @@ public class GameMap {
         CuttingTable cuttingTable = new CuttingTable("CuttingTable", "sprites/cutting_table.png", 0, 0);
         Deposit deposit = new Deposit("Deposit", "sprites/deposit.png", 0, 0);
         Bin bin = new Bin("Bin", "sprites/bin.png", 0, 0);
-        FoodboxClosed foodboxClosed = new FoodboxClosed("FoodboxClosed", "sprites/foodbox_closed.png", 0, 0);
+        Foodbox foodbox = new Foodbox("FoodboxClosed", "sprites/foodbox_closed.png", 0, 0);
         Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
 
         try{
@@ -52,22 +52,36 @@ public class GameMap {
 
             for(int i = 0; i < 9;i++){
                 for(int j = 0; j < 9; j++) {
-
-                    Tile tile = new Tile("Tile", floor.getPath(), i, j);
                 
-                    switch(mapTiles[i][j]) {
-                        case 0: tile.setPath(floor.getPath()); break;
-                        case 1: tile.setPath(wall.getPath()); break;
-                        case 2: tile.setPath(table.getPath()); break;
-                        case 3: tile.setPath(cuttingTable.getPath()); break;
-                        case 4: tile.setPath(deposit.getPath()); break;
-                        case 5: tile.setPath(bin.getPath()); break;
-                        case 6: tile.setPath(foodboxClosed.getPath()); break;
-                        case 8: tile.setPath(inventory.getPath()); break;
-                        case 9: tile.setPath(floor.getPath()); break;
+                    switch (mapTiles[i][j]) {
+                        case 0:
+                            tiles[i][j] = new Floor("Floor", floor.getPath(), i, j);
+                            break;
+                        case 1:
+                            tiles[i][j] = new Wall("Wall", wall.getPath(), i, j);
+                            break;
+                        case 2:
+                            tiles[i][j] = new Table("Table", table.getPath(), i, j);
+                            break;
+                        case 3:
+                            tiles[i][j] = new CuttingTable("CuttingTable", cuttingTable.getPath(), i, j);
+                            break;
+                        case 4:
+                            tiles[i][j] = new Deposit("Deposit", deposit.getPath(), i, j);
+                            break;
+                        case 5:
+                            tiles[i][j] = new Bin("Bin", bin.getPath(), i, j);
+                            break;
+                        case 6:
+                            tiles[i][j] = new Foodbox("FoodboxClosed", foodbox.getPath(), i, j);
+                            break;
+                        case 8:
+                            tiles[i][j] = new Inventory("Inventory", inventory.getPath(), i, j);
+                            break;
+                        case 9:
+                            tiles[i][j] = new Floor("Floor", floor.getPath(), i, j);
+                            break;
                     }
-
-                    this.tiles[i][j] = tile;
                 }
             }
         } catch(Exception e) {
