@@ -1,9 +1,12 @@
 package cheddarcheese;
 
+import javafx.scene.image.ImageView;
+
 abstract public class Item {
-    int xPos;
-    int yPos;
-    String name;
+    private int xPos;
+    private int yPos;
+    private String name;
+    private ImageView image;
     
     public Item(int xPos, int yPos, String name) {
         this.xPos = xPos;
