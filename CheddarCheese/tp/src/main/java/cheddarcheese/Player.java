@@ -1,14 +1,15 @@
 package cheddarcheese;
 
-import cheddarcheese.Tiles.CuttingTable;
 import cheddarcheese.Tiles.InteractTile;
+import cheddarcheese.Tiles.Inventory;
+import cheddarcheese.Tiles.ItemHolder;
 import cheddarcheese.Tiles.Tile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class Player {
-    private Item holding;
+    private Inventory inventory;
     private double xPos;
     private double yPos;
     private double speed;
@@ -17,13 +18,14 @@ public class Player {
     private ImageView image;
     private Tile tileset[][];
 
-    public Player(ImageView image, Pane overlayPane, Tile tileset[][]) {
+    public Player(ImageView image, Pane overlayPane, Tile tileset[][], Inventory inventory) {
         this.image = image;
         this.xPos = 1 * 64;
         this.yPos = 1 * 64;
         this.speed = 1 * 64;
         this.overlayPane = overlayPane;
         this.tileset = tileset;
+        this.inventory = inventory;
 
         overlayPane.getChildren().add(image);
         updateImagePosition();
@@ -81,6 +83,30 @@ public class Player {
     }
 
     public void interactWithTile() {
+        Tile block = getFrontBlock();
+
+        if(block instanceof InteractTile) ((InteractTile) block).interact(this);
+    }
+
+    public void interactWithItemHolder() {
+        Tile block = getFrontBlock();
+
+        if(block instanceof ItemHolder){
+            if(((ItemHolder) block).getItem() != null && ((ItemHolder) inventory).getItem() == null) {
+                Item popped = ((ItemHolder) block).popItem();
+                ((ItemHolder) inventory).setItem(popped);
+            } else if (((ItemHolder) block).getItem() == null && ((ItemHolder) inventory).getItem() != null) {
+                Item popped = ((ItemHolder) inventory).popItem();
+                ((ItemHolder) block).setItem(popped);
+            }
+        } 
+    }
+
+    public Inventory getInventory(){
+        return inventory;
+    }
+
+    private Tile getFrontBlock(){
         int xCoord = (int) xPos/64;
         int yCoord = (int) yPos/64;
 
@@ -98,12 +124,12 @@ public class Player {
                 xCoord--;
                 break;
             default:
-                return;
+                break;
         }
 
         Tile block = tileset[xCoord][yCoord];
 
-        if(block instanceof InteractTile) ((InteractTile) block).interact(this);
+        return block;
     }
 
     private void setImage(String filename) {

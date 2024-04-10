@@ -9,6 +9,6 @@ public class Bin extends Tile implements InteractTile{
 
     @Override
     public void interact(Player p) {
-        System.out.println("Bin");
+        p.getInventory().deleteItem();
     }
 }

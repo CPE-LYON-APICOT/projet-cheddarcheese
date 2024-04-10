@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
+import cheddarcheese.Tiles.Inventory;
 import cheddarcheese.Tiles.Tile;
 
 /**
@@ -35,9 +36,6 @@ public class App extends Application{
         map.loadMap("map");
         Tile mapTiles[][] = map.getTiles();
         
-        /*
-         * Generate the map
-         */
         for(int i = 0; i < 9;i++){
             for(int j = 0; j < 9; j++) {
                 Tile tile = mapTiles[i][j];
@@ -54,7 +52,7 @@ public class App extends Application{
         String pathC = "sprites/char_s1.png";
         ImageView spriteC = spriteManager.createNewSprite(pathC);
 
-        Player character = new Player(spriteC, playerPane, mapTiles);
+        Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[8][8]);
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
         @Override
@@ -76,6 +74,9 @@ public class App extends Application{
                     break;
                 case L:
                     character.interactWithTile();
+                    break;
+                case M:
+                    character.interactWithItemHolder();
                     break;
                 default:
                     break;
