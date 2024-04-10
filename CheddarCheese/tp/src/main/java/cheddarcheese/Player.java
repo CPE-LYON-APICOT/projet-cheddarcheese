@@ -20,7 +20,7 @@ public class Player {
         this.image = image;
         this.xPos = 1 * 64;
         this.yPos = 1 * 64;
-        this.speed = 0.2 * 64;
+        this.speed = 1 * 64;
         this.overlayPane = overlayPane;
         this.tileset = tileset;
 
@@ -37,22 +37,22 @@ public class Player {
     }
 
     public void moveDown(){
-        collisionCheck(xPos, yPos + speed);
+        collisionCheck(xPos, yPos + speed, 'S');
         updateImagePosition();
     }
 
     public void moveUp(){
-        collisionCheck(xPos, yPos - speed);
+        collisionCheck(xPos, yPos - speed, 'N');
         updateImagePosition();
     }
 
     public void moveRight(){
-        collisionCheck(xPos + speed, yPos);
+        collisionCheck(xPos + speed, yPos, 'E');
         updateImagePosition();
     }
 
     public void moveLeft(){
-        collisionCheck(xPos - speed, yPos);
+        collisionCheck(xPos - speed, yPos, 'W');
         updateImagePosition();
     }
 
@@ -61,11 +61,11 @@ public class Player {
         image.setLayoutY(yPos);
     }
 
-    private void collisionCheck(double nXpos, double nYpos) {
-        int tileX = (int) Math.floor(nXpos)/64;
-        int tileY = (int) Math.floor(nYpos)/64;
+    private void collisionCheck(double nXpos, double nYpos, char direction) {
+        int tileX = (int) (nXpos / 64); 
+        int tileY = (int) (nYpos / 64); 
     
-        if (tileset[tileX][tileY].getPath() == "sprites/floor.png") {
+        if(tileset[tileX][tileY].getPath() == "sprites/floor.png"){
             xPos = nXpos;
             yPos = nYpos;
         }

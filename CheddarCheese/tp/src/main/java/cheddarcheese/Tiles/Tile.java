@@ -1,5 +1,7 @@
 package cheddarcheese.Tiles;
 
+import javafx.scene.image.ImageView;
+
 public class Tile {
     private String label;
     private String path;

@@ -62,7 +62,7 @@ public class App extends Application{
         String pathC = "sprites/char_s1.png";
         ImageView spriteC = spriteManager.createNewSprite(pathC);
 
-        Player character = new Player(spriteC, playerPane, map.getTiles());
+        Player character = new Player(spriteC, playerPane, mapTiles);
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
         @Override
