@@ -65,7 +65,7 @@ public class Player {
         int tileX = (int) Math.floor(nXpos)/64;
         int tileY = (int) Math.floor(nYpos)/64;
     
-        if (!(tileset[tileX][tileY] instanceof Floor)) {
+        if (tileset[tileX][tileY].getPath() == "sprites/floor.png") {
             xPos = nXpos;
             yPos = nYpos;
         }
