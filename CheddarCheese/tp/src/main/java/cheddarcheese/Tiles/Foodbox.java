@@ -1,22 +1,34 @@
 package cheddarcheese.Tiles;
 
+import java.lang.reflect.Constructor;
+
 import cheddarcheese.GameManager;
-import cheddarcheese.Player;
-import cheddarcheese.Tomato;
+import cheddarcheese.Item;
 
 public class Foodbox extends Table implements InteractTile{
-    public Foodbox(String label, String path, int x, int y) {
+    private Class<?> containedClass;
+
+    public Foodbox(String label, String path, int x, int y, Class<?> containedClass) {
         super(label, path, x, y);
+        this.containedClass = containedClass;
     }
 
     @Override
     public void interact(GameManager gm) {
         System.out.println("Foodbox");
 
-        if(this.holding == null){
-            Tomato tomato = new Tomato(getY(), getX());
-            gm.addItemToMap(tomato, this.getX(), this.getY());
-            setItem(tomato);
+        if (this.holding == null && containedClass != null) {
+            try {
+                Constructor<?> constructor = containedClass.getConstructor(int.class, int.class);
+
+                Object item = constructor.newInstance(getX(), getY());
+
+                gm.addItemToMap((Item)item, getX(), getY());
+
+                setItem((Item)item);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
