@@ -1,5 +1,6 @@
 package cheddarcheese.Tiles;
 
+import cheddarcheese.GameManager;
 import cheddarcheese.Player;
 import cheddarcheese.Tomato;
 
@@ -9,11 +10,12 @@ public class Foodbox extends Table implements InteractTile{
     }
 
     @Override
-    public void interact(Player p) {
+    public void interact(GameManager gm) {
         System.out.println("Foodbox");
 
         if(this.holding == null){
             Tomato tomato = new Tomato(getY(), getX());
+            gm.addItemToMap(tomato, this.getX(), this.getY());
             setItem(tomato);
         }
     }

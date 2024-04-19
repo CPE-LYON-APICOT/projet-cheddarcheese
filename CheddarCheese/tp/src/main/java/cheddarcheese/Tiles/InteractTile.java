@@ -1,7 +1,7 @@
 package cheddarcheese.Tiles;
 
-import cheddarcheese.Player;
+import cheddarcheese.GameManager;
 
 public interface InteractTile {
-    void interact(Player p);
+    void interact(GameManager gm);
 }

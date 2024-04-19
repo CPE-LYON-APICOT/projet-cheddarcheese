@@ -3,6 +3,7 @@ package cheddarcheese.Tiles;
 import java.lang.reflect.InvocationTargetException;
 
 import cheddarcheese.Food;
+import cheddarcheese.GameManager;
 import cheddarcheese.Player;
 
 public class CuttingTable extends Machine implements InteractTile{
@@ -11,7 +12,7 @@ public class CuttingTable extends Machine implements InteractTile{
     }
 
     @Override
-    public void interact(Player p) {
+    public void interact(GameManager gm) {
         try {
             if (holding instanceof Food) {
                 Food transformedFood = TryTransform((Food) holding, this);

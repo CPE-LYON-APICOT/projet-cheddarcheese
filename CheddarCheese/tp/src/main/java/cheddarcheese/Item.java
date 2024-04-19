@@ -1,6 +1,9 @@
 package cheddarcheese;
 
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 abstract public class Item {
     private int xPos;
@@ -20,6 +23,7 @@ abstract public class Item {
 
     public void setXPos(int xPos) {
         this.xPos = xPos;
+        updateImagePosition();
     }
 
     public int getYPos() {
@@ -28,6 +32,13 @@ abstract public class Item {
 
     public void setYPos(int yPos) {
         this.yPos = yPos;
+        updateImagePosition();
+    }
+
+    public void setXYPos(int xPos, int yPos) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        updateImagePosition();
     }
 
     public String getName() {
@@ -36,6 +47,11 @@ abstract public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImg(ImageView img){
+        this.image = img;
+        updateImagePosition();
     }
 
     public Item xPos(int xPos) {
@@ -51,5 +67,26 @@ abstract public class Item {
     public Item name(String name) {
         setName(name);
         return this;
+    }
+
+    private void updateImagePosition() {
+        if (image != null) {
+            GridPane.setColumnIndex(image, xPos);
+            GridPane.setRowIndex(image, yPos);
+        }
+    }
+
+    public void moveToInventory(){
+        this.xPos = 8;
+        this.yPos = 8;
+        updateImagePosition();
+    }
+
+    public void removeImg(){
+        Parent parent = image.getParent();
+    
+        if (parent instanceof Pane) {
+            ((Pane) parent).getChildren().remove(image);
+        }
     }
 }

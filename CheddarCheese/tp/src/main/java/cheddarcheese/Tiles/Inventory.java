@@ -26,6 +26,7 @@ public class Inventory extends Tile implements ItemHolder{
     }
 
     public void deleteItem(){
+        holding.removeImg();
         holding = null;
     }
 }

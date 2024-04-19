@@ -1,5 +1,6 @@
 package cheddarcheese.Tiles;
 
+import cheddarcheese.GameManager;
 import cheddarcheese.Player;
 
 public class Deposit extends Tile implements InteractTile{
@@ -8,7 +9,7 @@ public class Deposit extends Tile implements InteractTile{
     }
 
     @Override
-    public void interact(Player p) {
+    public void interact(GameManager gm) {
         System.out.println("Deposit");
     }
 }

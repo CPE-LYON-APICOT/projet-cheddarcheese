@@ -6,6 +6,7 @@ import cheddarcheese.Tiles.ItemHolder;
 import cheddarcheese.Tiles.Tile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class Player {
@@ -14,7 +15,6 @@ public class Player {
     private double yPos;
     private double speed;
     private char orientation;
-    private Pane overlayPane;
     private ImageView image;
     private Tile tileset[][];
 
@@ -23,7 +23,6 @@ public class Player {
         this.xPos = 1 * 64;
         this.yPos = 1 * 64;
         this.speed = 1 * 64;
-        this.overlayPane = overlayPane;
         this.tileset = tileset;
         this.inventory = inventory;
 
@@ -82,31 +81,11 @@ public class Player {
         }
     }
 
-    public void interactWithTile() {
-        Tile block = getFrontBlock();
-
-        if(block instanceof InteractTile) ((InteractTile) block).interact(this);
-    }
-
-    public void interactWithItemHolder() {
-        Tile block = getFrontBlock();
-
-        if(block instanceof ItemHolder){
-            if(((ItemHolder) block).getItem() != null && ((ItemHolder) inventory).getItem() == null) {
-                Item popped = ((ItemHolder) block).popItem();
-                ((ItemHolder) inventory).setItem(popped);
-            } else if (((ItemHolder) block).getItem() == null && ((ItemHolder) inventory).getItem() != null) {
-                Item popped = ((ItemHolder) inventory).popItem();
-                ((ItemHolder) block).setItem(popped);
-            }
-        } 
-    }
-
     public Inventory getInventory(){
         return inventory;
     }
 
-    private Tile getFrontBlock(){
+    public Tile getFrontBlock(){
         int xCoord = (int) xPos/64;
         int yCoord = (int) yPos/64;
 

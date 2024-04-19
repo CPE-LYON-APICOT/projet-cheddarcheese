@@ -1,5 +1,6 @@
 package cheddarcheese.Tiles;
 
+import cheddarcheese.GameManager;
 import cheddarcheese.Player;
 
 public class Bin extends Tile implements InteractTile{
@@ -8,7 +9,7 @@ public class Bin extends Tile implements InteractTile{
     }
 
     @Override
-    public void interact(Player p) {
-        p.getInventory().deleteItem();
+    public void interact(GameManager gm) {
+        gm.getPlayer().getInventory().deleteItem();
     }
 }

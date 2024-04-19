@@ -23,7 +23,7 @@ import cheddarcheese.Tiles.Tile;
  */
 public class App extends Application{
 
-    private static Scene scene;
+    private static GameManager gm;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,39 +54,11 @@ public class App extends Application{
 
         Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[8][8]);
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            KeyCode keyPressed = event.getCode();
-
-            switch (keyPressed) {
-                case Z:
-                    character.moveUp();
-                    break;
-                case S:
-                    character.moveDown();
-                    break;
-                case Q:
-                    character.moveLeft();
-                    break;
-                case D:
-                    character.moveRight();
-                    break;
-                case L:
-                    character.interactWithTile();
-                    break;
-                case M:
-                    character.interactWithItemHolder();
-                    break;
-                default:
-                    break;
-            }
-        }
-    });
+        gm = new GameManager(game, playerPane, scene, character, spriteManager);
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        gm.getScene().setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
