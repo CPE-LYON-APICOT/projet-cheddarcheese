@@ -1,8 +1,8 @@
 
 # Retro-conception
 
-**Binome 1 : [Nom Prénom]**
-**Binome 2 : [Nom Prénom]**
+**Binome 1 : [BORJA Loris]**
+**Binome 2 : [REINA-HIOT Tom]**
 
 Complétez ce document pour décrire votre projet, les difficultés rencontrées, les design patterns mis en oeuvre, les améliorations possibles, et en quoi la POO vous a été utile.
 
@@ -21,8 +21,6 @@ Pour cela, il est courrant de tenir un jour un Document d'Architecture Technique
 Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il faut être honnête et proposer une vision d'ensemble de votre code, et expliquer pourquoi vous avez fait des choix, et pourquoi vous n'avez pas fait d'autres choix, il est souvent question de compromis (on fait un truc pas ouf pour gagner du temps, mais la qualité du code en pâtit, etc.)
 > Vous pouvez dire : "Pour la gestion des collisions, nous utilisons une librairie tierce, toutefois celle-ci ne gère que les collisions entre des rectangles, au fur et à mesure des itérations, des ennemis de grande taille et de forme complexe sont apparus, toutefois, nous avons conservé une hitbox rectangulaire, en résulte que le joueur peut être touché alors que visuellement, il n'est pas en contact avec l'ennemi ; nous avions également envisagé de créer plusieurs hitbox de tailles différentes sur un même ennemi afin de mieux coller à la forme de celui-ci, toutefois, les performances du jeu ont étés trop dégradées"
 
-
-
 ---
 # Partie "Client" (pas trop technique) :
 
@@ -30,9 +28,17 @@ Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il f
 
 [Décrivez ici l'objectif initial du projet, ne cherchez pas à le minorer si vous n'avez pas tout fini, décrivez ce que vous avez voulu faire]
 
+*Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et construire le burger. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches <ZQSD>. L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches <LM>.*
+
 ## Résultat
 
 [Avez vous atteint votre objectif ?]
+
+*Nous avons atteind notre objectif initial qui était de pouvoir générer une cuisine selon un shéma voulu, de pouvoir ce déplacer à travers celle-ci en ayant la possibiliter de manipuler des ingrédients, de les transformer et de les assembler pour créer une recette. Actuellement dans le jeu, les ingrédients disponibles sont salade, tomate, steak et pain.
+
+Pour gagner la partie il faut :
+- Une tranche de pain
+- Ajouter 
 
 ### Améliorations possibles
 
