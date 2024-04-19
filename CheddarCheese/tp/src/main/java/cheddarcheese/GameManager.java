@@ -79,7 +79,7 @@ public class GameManager {
     }
 
     public void addItemToMap(Item item, int x, int y) {
-        ImageView img = spm.createNewSprite("sprites/tomato.png");
+        ImageView img = spm.createNewSprite("sprites/" + item.getName() + ".png");
         item.setImgView(img);
         map.add(img, x, y);
     }

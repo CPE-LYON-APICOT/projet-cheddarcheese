@@ -10,7 +10,7 @@ abstract public class Item {
     private int xPos;
     private int yPos;
     private String name;
-    private ImageView image;
+    public ImageView image;
     
     public Item(int xPos, int yPos, String name) {
         this.xPos = xPos;
@@ -53,10 +53,11 @@ abstract public class Item {
     public void setImgView(ImageView img){
         this.image = img;
         updateImagePosition();
+        setImage(this.name);
     }
 
     public void setImage(String filename) {
-        Image itemImage = new Image(getClass().getResourceAsStream("sprites/" + filename));
+        Image itemImage = new Image(getClass().getResourceAsStream("sprites/" + filename + ".png"));
         image.setImage(itemImage);
     }
 
