@@ -32,6 +32,7 @@ public class GameMap {
          */
         Foodbox saladFoodbox = new Foodbox("Salad Foodbox", "sprites/salad_foodbox_closed.png", 0, 0, Salad.class);
         Foodbox tomatoFoodbox = new Foodbox("Tomato Foodbox", "sprites/tomato_foodbox_closed.png", 0, 0, Tomato.class);
+        Foodbox breadFoodbox = new Foodbox("Bread Foodbox", "sprites/bread_foodbox_closed.png", 0, 0, Bread.class);
 
         Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
 
@@ -92,6 +93,9 @@ public class GameMap {
                             break;
                         case 9:
                             tiles[i][j] = new Floor("Floor", floor.getPath(), i, j);
+                            break;
+                        case 10:
+                            tiles[i][j] = new Foodbox("Bread Foodbox", breadFoodbox.getPath(), i, j, Bread.class);
                             break;
                     }
                 }
