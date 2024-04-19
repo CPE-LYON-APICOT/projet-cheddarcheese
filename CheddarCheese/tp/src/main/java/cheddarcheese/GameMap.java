@@ -17,13 +17,22 @@ public class GameMap {
     public void loadMap(String mapName){
         int mapTiles[][] = new int[sizeX][sizeY];
 
+        /*
+         * Création des différentes cases
+         */
         Floor floor = new Floor("Floor", "sprites/floor.png", 0, 0);
         Wall wall = new Wall("Wall", "sprites/wall.png", 0, 0);
         Table table = new Table("Table", "sprites/table.png", 0, 0);
         CuttingTable cuttingTable = new CuttingTable("CuttingTable", "sprites/cutting_table.png", 0, 0);
         Deposit deposit = new Deposit("Deposit", "sprites/deposit.png", 0, 0);
         Bin bin = new Bin("Bin", "sprites/bin.png", 0, 0);
-        Foodbox foodbox = new Foodbox("FoodboxClosed", "sprites/foodbox_closed.png", 0, 0, Tomato.class);
+        
+        /*
+         * Création des différentes foodboxes
+         */
+        Foodbox saladFoodbox = new Foodbox("Salad Foodbox", "sprites/salad_foodbox_closed.png", 0, 0, Salad.class);
+        Foodbox tomatoFoodbox = new Foodbox("Tomato Foodbox", "sprites/tomato_foodbox_closed.png", 0, 0, Tomato.class);
+
         Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
 
         try{
@@ -73,7 +82,10 @@ public class GameMap {
                             tiles[i][j] = new Bin("Bin", bin.getPath(), i, j);
                             break;
                         case 6:
-                            tiles[i][j] = new Foodbox("FoodboxClosed", foodbox.getPath(), i, j, Tomato.class);
+                            tiles[i][j] = new Foodbox("Tomato Foodbox", tomatoFoodbox.getPath(), i, j, Tomato.class);
+                            break;
+                        case 7:
+                            tiles[i][j] = new Foodbox("Salad Foodbox", saladFoodbox.getPath(), i, j, Salad.class);
                             break;
                         case 8:
                             tiles[i][j] = new Inventory("Inventory", inventory.getPath(), i, j);
