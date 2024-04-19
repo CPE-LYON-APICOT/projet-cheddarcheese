@@ -1,6 +1,7 @@
 package cheddarcheese;
 
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -49,9 +50,14 @@ abstract public class Item {
         this.name = name;
     }
 
-    public void setImg(ImageView img){
+    public void setImgView(ImageView img){
         this.image = img;
         updateImagePosition();
+    }
+
+    public void setImage(String filename) {
+        Image itemImage = new Image(getClass().getResourceAsStream("sprites/" + filename));
+        image.setImage(itemImage);
     }
 
     public Item xPos(int xPos) {
