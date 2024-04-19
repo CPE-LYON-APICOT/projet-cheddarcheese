@@ -80,10 +80,10 @@ public class GameManager {
                 Item popped = playerInventory.popItem();
                 blockInventory.setItem(popped);
                 popped.setXYPos(block.getX(), block.getY());
-            } else if (blockItem instanceof Bread && userItem instanceof Food) {
+            } else if (blockItem instanceof BaseForRecipe && userItem instanceof Food) {
                 Food foodItem = (Food) playerInventory.popItem();
-                ((Bread) blockItem).addIngredient(foodItem);
-                Food transformedFood = ((Bread) blockItem).checkIngredients(foodItem);
+                ((BaseForRecipe) blockItem).addIngredient(foodItem);
+                Food transformedFood = ((BaseForRecipe) blockItem).checkIngredients(foodItem);
                 if (transformedFood != null) {
                     transformedFood.setImgView(blockItem.image);
                     blockInventory.setItem(transformedFood);
