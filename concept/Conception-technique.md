@@ -34,11 +34,17 @@ Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il f
 
 [Avez vous atteint votre objectif ?]
 
-*Nous avons atteind notre objectif initial qui était de pouvoir générer une cuisine selon un shéma voulu, de pouvoir ce déplacer à travers celle-ci en ayant la possibiliter de manipuler des ingrédients, de les transformer et de les assembler pour créer une recette. Actuellement dans le jeu, les ingrédients disponibles sont salade, tomate, steak et pain.
+Nous avons atteind notre objectif initial qui était de pouvoir générer une cuisine selon un shéma voulu, de pouvoir ce déplacer à travers celle-ci en ayant la possibiliter de manipuler des ingrédients, de les transformer et de les assembler pour créer une recette. Actuellement dans le jeu, les ingrédients disponibles sont salade, tomate, steak et pain.
 
-Pour gagner la partie il faut :
-- Une tranche de pain
-- Ajouter 
+Pour gagner la partie il faut en premier :
+- Prendre une tranche de pain dans le conteuneur à pain en interagissant avec <L>, le prendre avec <M> et le déposer sur une table.
+
+Ensuite dans n'importe quel ordre il faut :
+- Ajouter de la salade en interagissant avec <L> dans le conteneur à salade et le placer sur le pain avec <M>.
+- Prendre une tomate dans le conteneur de tomates avec <L>, la prendre avec <M> puis la déposer sur la planche à découper avec <M> puis interagir avec avec <L> pour découper la tomate. Une fois qu'elle est découpée la prendre avec <M> et ensuite la déposer sur le pain avec <M>.
+- Prendre un steak dans le conteneur de steak avec <L> et <M>, le déposer sur la plaque de cuisson avec <M>. Interagir avec <L> pour cuire le steak et une fois cuit, le prendre et le déposer sur le pain avec <M>
+
+Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain avec <L> et <M> et le déposer sur tous les ingrédients qu'on a ajouté. On obtient un magnifique burger !
 
 ### Améliorations possibles
 
