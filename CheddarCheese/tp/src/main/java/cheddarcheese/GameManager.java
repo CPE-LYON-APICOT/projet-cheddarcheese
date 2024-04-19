@@ -65,17 +65,31 @@ public class GameManager {
     public void interactWithItemHolder() {
         Tile block = player.getFrontBlock();
 
-        if(block instanceof ItemHolder){
-            if(((ItemHolder) block).getItem() != null && ((ItemHolder) player.getInventory()).getItem() == null) {
-                Item popped = ((ItemHolder) block).popItem();
-                ((ItemHolder) player.getInventory()).setItem(popped);
+        if (block instanceof ItemHolder && player.getInventory() instanceof ItemHolder) {
+            ItemHolder blockInventory = (ItemHolder) block;
+            ItemHolder playerInventory = (ItemHolder) player.getInventory();
+        
+            Item blockItem = blockInventory.getItem();
+            Item userItem = playerInventory.getItem();
+        
+            if (blockItem != null && userItem == null) {
+                Item popped = blockInventory.popItem();
+                playerInventory.setItem(popped);
                 popped.moveToInventory();
-            } else if (((ItemHolder) block).getItem() == null && ((ItemHolder) player.getInventory()).getItem() != null) {
-                Item popped = ((ItemHolder) player.getInventory()).popItem();
-                ((ItemHolder) block).setItem(popped);
+            } else if (blockItem == null && userItem != null) {
+                Item popped = playerInventory.popItem();
+                blockInventory.setItem(popped);
                 popped.setXYPos(block.getX(), block.getY());
+            } else if (blockItem instanceof Bread && userItem instanceof Food) {
+                Food foodItem = (Food) playerInventory.popItem();
+                ((Bread) blockItem).addIngredient(foodItem);
+                Food transformedFood = ((Bread) blockItem).checkIngredients(foodItem);
+                if (transformedFood != null) {
+                    transformedFood.setImgView(blockItem.image);
+                    blockInventory.setItem(transformedFood);
+                }
             }
-        } 
+        }
     }
 
     public void addItemToMap(Item item, int x, int y) {
