@@ -26,12 +26,14 @@ public class GameMap {
         CuttingTable cuttingTable = new CuttingTable("CuttingTable", "sprites/cutting_table.png", 0, 0);
         Deposit deposit = new Deposit("Deposit", "sprites/deposit.png", 0, 0);
         Bin bin = new Bin("Bin", "sprites/bin.png", 0, 0);
+        CookingPlate cookingPlate = new CookingPlate("cookingPlate", "sprites/cookingplate.png", 0, 0);
         
         /*
          * Création des différentes foodboxes
          */
         Foodbox saladFoodbox = new Foodbox("Salad Foodbox", "sprites/salad_foodbox_closed.png", 0, 0, Salad.class);
         Foodbox tomatoFoodbox = new Foodbox("Tomato Foodbox", "sprites/tomato_foodbox_closed.png", 0, 0, Tomato.class);
+        Foodbox steakFoodbox = new Foodbox("Steak Foodbox", "sprites/steak_foodbox_closed.png", 0, 0, Steak.class);
         Foodbox breadFoodbox = new Foodbox("Bread Foodbox", "sprites/bread_foodbox_closed.png", 0, 0, Bread.class);
 
         Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
@@ -95,6 +97,12 @@ public class GameMap {
                             tiles[i][j] = new Floor("Floor", floor.getPath(), i, j);
                             break;
                         case 10:
+                            tiles[i][j] = new CookingPlate("CookingPlate", cookingPlate.getPath(), i, j);
+                            break;
+                        case 11:
+                            tiles[i][j] = new Foodbox("SteakFoodbox", steakFoodbox.getPath(), i, j, Steak.class);
+                            break;
+                        case 12 :
                             tiles[i][j] = new Foodbox("Bread Foodbox", breadFoodbox.getPath(), i, j, Bread.class);
                             break;
                     }
