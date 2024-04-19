@@ -34,6 +34,7 @@ public class GameMap {
         Foodbox saladFoodbox = new Foodbox("Salad Foodbox", "sprites/salad_foodbox_closed.png", 0, 0, Salad.class);
         Foodbox tomatoFoodbox = new Foodbox("Tomato Foodbox", "sprites/tomato_foodbox_closed.png", 0, 0, Tomato.class);
         Foodbox steakFoodbox = new Foodbox("Steak Foodbox", "sprites/steak_foodbox_closed.png", 0, 0, Steak.class);
+        Foodbox breadFoodbox = new Foodbox("Bread Foodbox", "sprites/bread_foodbox_closed.png", 0, 0, Bread.class);
 
         Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
 
@@ -100,6 +101,9 @@ public class GameMap {
                             break;
                         case 11:
                             tiles[i][j] = new Foodbox("SteakFoodbox", steakFoodbox.getPath(), i, j, Steak.class);
+                            break;
+                        case 12 :
+                            tiles[i][j] = new Foodbox("Bread Foodbox", breadFoodbox.getPath(), i, j, Bread.class);
                             break;
                     }
                 }
