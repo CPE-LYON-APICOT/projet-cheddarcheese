@@ -28,7 +28,7 @@ Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il f
 
 [Décrivez ici l'objectif initial du projet, ne cherchez pas à le minorer si vous n'avez pas tout fini, décrivez ce que vous avez voulu faire]
 
-*Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et construire le burger. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches <ZQSD>. L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches <LM>.*
+Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et construire le burger. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches <ZQSD>. L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches <LM>.
 
 ## Résultat
 
@@ -50,6 +50,11 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 
 [Décrivez ici les améliorations que vous auriez pu apporter si vous aviez eu plus de temps]
 
++ de recettes
++ de machines
++ temps limite de préparation de la recette
++ maps générées aléatoirement, ou juste des différentes maps
+
 ---
 # Partie "Développeur" (plus technique) :
 
@@ -57,6 +62,9 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 ### Implémentations remarquables
 
 [Si pendant votre implémentation, vous trouvez que vous pouvez être particulièrment fiers d'une partie de votre code, décrivez là ici ; par exemple si vous avez généré une carte de manière procédurale, ou à l'aide d'un fichier]
+
+- Génération d'une map à partir d'un fichier texte
+- Annotations de code (Modularité) qui permettent de créer facilement et rapidement des ingrédients, des recettes et des blocs
 
 ### Faiblesses du code
 
