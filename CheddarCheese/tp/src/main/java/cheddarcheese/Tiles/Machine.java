@@ -23,7 +23,10 @@ public abstract class Machine extends Table {
                     Class<? extends Food> transformedClass = t.transformsTo();
                     try {
                         Constructor<? extends Food> constructor = transformedClass.getDeclaredConstructor(int.class, int.class);
-                        return constructor.newInstance(food.getXPos(), food.getYPos());
+                        Food newitem = constructor.newInstance(food.getXPos(), food.getYPos());
+                        newitem.setImgView(food.image);
+
+                        return newitem;
                     } catch (NoSuchMethodException e) {
                         System.err.println("No constructor found for " + transformedClass.getSimpleName() + " that takes xcoord and ycoord.");
                         return food; 
