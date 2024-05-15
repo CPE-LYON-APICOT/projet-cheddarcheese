@@ -70,11 +70,28 @@ DEUXIEME RECETTE :
 
 - Génération d'une map à partir d'un fichier texte.
 - Annotations de code (Modularité) qui permettent de créer facilement et rapidement des ingrédients, des recettes et des blocs.
+- Affichage de la recette demandée.
 - Les magnifiques sprites dessinés à la main.
 
 ### Faiblesses du code
 
 [C'est ici que vous me dites ce que vous savez que vous avez mal fait, expliquez pourquoi vous avez fait ce choix (manque de temps, manque de compétence, trop pénible à faire, etc.)]
+
+- Génération de la map : pour l'instant, créer une map rectangulaire cause des soucis et l'inventaire est forcémment à la case en bas à droite pour rendre plus simple au niveau du code.
+      - Il n'y as pas de vérification si la map est correcte en terme d'emplacement, si un emplacement joueur est défini et si les outils sont accessible. (Question de temps)
+      - Définir une map trop grande (au dela de 14x14) peut causer des soucis au niveau de l'affichage où la map serait trop grande pour l'écran : cela est due au fait que chaque case est définie selon des pixels.
+  
+- Comme par exemple dans Bin, certaines Tiles appellent des méthodes du gameManger en demandant ce dernier en paramêtre, ce qui a été mis en place pour gagner du temps au niveau du projet.
+- L'inventaire est une Tile qui contient un objet, et non pas juste un réel inventaire. Cela peut causer des soucis au niveau de l'affichage mais faire de cette façon est plus simple à coder.
+- La gridView de la map et autres liés à javaFx on été générées sur App pour que cela soit plus simple à mettre en place.
+  
+- Nous vérifions la collision de bloc avec le chemin du sprite de la Tile en fâce : cela peut causer des soucis si on est ammené à modifier le nom de cette sprite.
+- Certains sprites sont liées au nom de classes et donc présententes le même problème. Ce choix à été fait pour simplifier le lien entre un objet et une sprite.
+
+- La gestion des collisions se base sur des coordonées en int donc des mouvements relativements sacadées, car mettre en place des coordonées en double rendrerait bien plus complexe la gestion des collisions et nécéssiterait la mise en place d'une "Hitbox" pour le joueur.
+
+- La gestion de beaucoup de sprites se base sur la récupération de ces derniers par un chemin "sprites/" + nom + ".png" mais cela peut causer des soucis si le sprite n'est pas en png.
+- Aussi, pour les différentes Tiles de la map, le chemin des sprites est écrit en dur dans le code, ce qui nécéssite de modifier le code de cette partie si une sprite change de nom. Eventuellement on aurait pu envisager une manière plus propre de définir les sprites de chaque Tile, mais cela nous aurais pris plus de temps et aurait augmenté la complexité du code.
 
 ******
 
@@ -100,11 +117,11 @@ int r = 0;
 while(c < sizeY && r < sizeX){
     String line = br.readLine();
 
-    while(c < 9) {
-        String values[] = line.split("\\s+");
-        int val = Integer.parseInt(values[c]);
+while(c < sizeX) {
+    String values[] = line.split("\\s+");
+    int val = Integer.parseInt(values[c]);
 
-        mapTiles[c][r] = val;
+    mapTiles[c][r] = val;
         c++;
     }
     if(c == sizeY){
@@ -128,6 +145,8 @@ public ImageView createNewSprite(String path) {
 }
 ```
 
+Un autre point de difficultés avec les sprites etait de pouvoir modifier le sprite facilement sans faire trop d'appels de méthodes.
+
 #### 2. [Gestion des collisions]
 
 [Exemple : Nous n'avons pas réussi à gérer les collisions, PARCE QUE, mes objets n'héritaient pas d'une classe commune, car nos objets héirtaient de ... et nos personnages de ...]
@@ -145,6 +164,18 @@ private void collisionCheck(double nXpos, double nYpos) {
     }
 }
 ```
+
+#### 3. [Autre]
+
+Au niveau de la nourriture, l'une des difficultés, plutôt au niveau graphique, a été de faire apparaitre l'objet sur la map.
+Pour cela on a du faire appeller une méthode au niveau du GameController plutôt qu'au niveau de l'objet lui même.
+
+Il a fallu aussi trouver un moyen de mettre en place un "inventaire" et de gérer comment le joueur échange l'objet de l'inventaire avec ceux en jeux.
+Ce qui nous as fait rencontrés des soucis au niveau graphique avec un inventaire qui visuellement ne se vide pas.
+
+Au niveau des recettes, il y avait des difficultés au niveau de comment récupérer ces dernières pour en choisir, au hasard, l'une d'entre elles à afficher.
+aussi les recettes ont du être lié à une base, qui est un ingrédient, et mettre en place un array qui contiendrait les ingrédients : Il n'y as pas de visuels pour les ingrédients ajoutés à une base.
+
 
 ### *Design Patterns* mis en oeuvre
 
@@ -218,6 +249,7 @@ Minimum 15 lignes (personnalisé en fonction de votre projet)]
 On pense que sans POO ça aurait été très compliqué. De faire de l'objet, quelque soit le language, permet d'optimiser et de rendre le code plus facile à lire, à comprendre et surtout à modifier.
 
 Par exemple dans notre jeu, on a la possibilité d'ajouter des éléments très rapidement grâce à nos design patterns et nos classes. Que l'élément soit une case, un comportement, ou un item, il est très facile d'en ajouter ou d'en supprimer selon nos besoins.
+Pour la nourriture, la POO nous permet de différencier entre les ingrédients, les ingrédients modifiables, bases de recettes et recettes finie : L'héritage permet aussi de réduire le code, en faisant par exemple sorte que nos objets nourritures ait tous des méthodes en commun, ce qui a permis de faire plus simplement la mise en place des transformations (Machines) de nourriture, qui s'applique à plusieurs classes différentes mais qui partagent les méthodes importantes.
 
 Il est aussi très facile à lire, les fichiers sont séparés, avec peu de contenu, ce qui permet de s'y retrouver et aussi si quelqun reprend notre code il ne sera pas trop compliqué de comprendre comment sont organisées les choses.
 
@@ -227,15 +259,15 @@ Il est aussi très facile à lire, les fichiers sont séparés, avec peu de cont
 
 Pour ma part (Tom), les designs patterns étaient vraiment abstraits en cours, mais le projet a permis de m'éclairer un peu plus grâce à la pratique. De plus la notion d'interface m'était aussi assez étrangère, mais elle s'est révélée très utile et je pense avoir bien compris maintenant.
 
+Pour ma part (Loris), le concept de designs patterns n'était pas trés simple au début, mais les utiliser dans un cas pratique (notamment Transformable de notre projet) a permit de bien mieux comprendre les designs patterns et leur utilisation.
+
 ### Concluez
 
 [Plus globalement, quel est votre ressenti sur ce projet
 Minimum 5 lignes]
 
 Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet est pour nous un grand facteur de motivation sur l'envie d'apprendre à programmer en POO.
-
 De plus, on trouve que la POO et les designs patterns sont vraiment utiles comme décrits sur les points ci dessus, malgré parfois la difficulté de comprendre le fonctionnement des patterns qui se révèlent parfois assez abstraits et compliqué a visualiser.
-
 Enfin, le fait de pouvoir coder/tester visuellement en direct est aussi un facteur de motivation qui nous pousse à faire que "yes sa marche !".
-
+Cependant, on passe peut être trop de temps sur des soucis liés à la partie graphique, qui n'est pas l'objectif principale du projet.
 De ce projet on en garde un bon souvenir, qu'on va précieusement archivé pour peut être plus tard s'en servir pour s'aider sur d'autres projets en POO.
