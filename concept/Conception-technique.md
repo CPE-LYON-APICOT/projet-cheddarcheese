@@ -205,7 +205,7 @@ public class Salad extends Food {
 Notre singleton pattern est notre personnage :
 
 ```java
-Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[8][8]);
+Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[boardX-1][boardY-1]);
 ```
 
 #### 3. [Decorator]
