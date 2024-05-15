@@ -1,7 +1,7 @@
-package cheddarcheese;
+package cheddarcheese.Foods.Interfaces;
 
+import cheddarcheese.Foods.Food;
 import cheddarcheese.Tiles.Machine;
-
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)

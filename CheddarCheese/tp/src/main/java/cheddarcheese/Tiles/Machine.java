@@ -2,10 +2,9 @@ package cheddarcheese.Tiles;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
-import cheddarcheese.Food;
-import cheddarcheese.Transformables;
-import cheddarcheese.Transformable;
+import cheddarcheese.Foods.Food;
+import cheddarcheese.Foods.Interfaces.Transformable;
+import cheddarcheese.Foods.Interfaces.Transformables;
 
 public abstract class Machine extends Table {
     public Machine(String label, String path, int x, int y) {

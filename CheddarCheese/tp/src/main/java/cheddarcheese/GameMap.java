@@ -3,6 +3,11 @@ package cheddarcheese;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import cheddarcheese.Foods.Bread;
+import cheddarcheese.Foods.Salad;
+import cheddarcheese.Foods.Steak;
+import cheddarcheese.Foods.Tomato;
 import cheddarcheese.Tiles.*;
 
 public class GameMap {

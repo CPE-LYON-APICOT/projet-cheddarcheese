@@ -1,12 +1,9 @@
 package cheddarcheese;
 
-import cheddarcheese.Tiles.InteractTile;
 import cheddarcheese.Tiles.Inventory;
-import cheddarcheese.Tiles.ItemHolder;
 import cheddarcheese.Tiles.Tile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class Player {

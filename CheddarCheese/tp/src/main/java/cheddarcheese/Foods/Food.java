@@ -1,4 +1,6 @@
-package cheddarcheese;
+package cheddarcheese.Foods;
+
+import cheddarcheese.Item;
 
 public class Food extends Item {
 
