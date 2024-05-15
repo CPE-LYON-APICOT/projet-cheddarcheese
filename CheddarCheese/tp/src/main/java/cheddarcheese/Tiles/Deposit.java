@@ -11,6 +11,12 @@ public class Deposit extends Tile implements InteractTile{
     @Override
     public void interact(GameManager gm) {
         System.out.println("Deposit");
+        if (gm.getPlayer().getInventory().getItem() != null){
+            if (gm.getPlayer().getInventory().getItem().getClass() == gm.getRecipeResult()) {
+                gm.selectRandomRecipe();
+                gm.getPlayer().getInventory().deleteItem();
+            }
+        }
     }
 }
 
