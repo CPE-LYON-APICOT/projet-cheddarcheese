@@ -13,12 +13,22 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import cheddarcheese.Foods.Interfaces.Recette;
+import cheddarcheese.Foods.Interfaces.Recettes;
+import cheddarcheese.Foods.Bread;
+import java.util.Random;
+
 public class GameManager {
     private GridPane map;
     private Pane playerPane;
     private Scene scene;
     private Player player;
     private SpriteManager spm;
+    private Recette curRecipe;
+    private List<Recette> recipes;
 
     public GameManager(GridPane map, Pane playPane, Scene scene, Player character, SpriteManager spm){
         this.map = map;
@@ -56,6 +66,35 @@ public class GameManager {
                 }
             }
         });
+
+        recipes = getRecipesFromAnnotation(Bread.class);
+        selectRandomRecipe();
+    }
+
+    private static List<Recette> getRecipesFromAnnotation(Class<?> clazz) {
+        List<Recette> recipes = new ArrayList<>();
+        
+        Recettes recettesAnnotation = clazz.getAnnotation(Recettes.class);
+        if (recettesAnnotation != null) {
+            Recette[] recetteAnnotations = recettesAnnotation.value();
+            for (Recette recette : recetteAnnotations) {
+                recipes.add(recette);
+            }
+        }
+        
+        return recipes;
+    }
+
+    public void selectRandomRecipe(){
+        Random rand = new Random();
+        int index = rand.nextInt(recipes.size());
+        curRecipe = recipes.get(index);
+        
+        // Now you have the recipes stored in the 'recipes' list
+        // You can iterate over this list and do whatever you need with the recipes
+        System.out.println("Ingredients: " + curRecipe.ingredients().length);
+        System.out.println("Top: " + curRecipe.top());
+        System.out.println("Transforms To: " + curRecipe.transformsTo());
     }
 
     public void interactWithTile() {
@@ -106,5 +145,9 @@ public class GameManager {
 
     public Player getPlayer(){
         return this.player;
+    }
+
+    public Class<?> getRecipeResult(){
+        return this.curRecipe.transformsTo();
     }
 }
