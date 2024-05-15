@@ -17,11 +17,7 @@ public class CuttingTable extends Machine implements InteractTile{
                 Food transformedFood = TryTransform((Food) holding, this);
                 holding = transformedFood;
             }
-        } catch (InstantiationException | IllegalAccessException | InterruptedException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | InterruptedException | IllegalArgumentException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
