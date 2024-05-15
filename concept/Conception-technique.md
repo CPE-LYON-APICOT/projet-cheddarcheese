@@ -100,40 +100,94 @@ private void collisionCheck(double nXpos, double nYpos) {
 
 #### 1. [Factory]
 [Décrivez ici brièvement le design pattern utilisé et pourquoi]
-[Ajouter éventuellement des exemples de code pour montrer l'élégence de votre solution, pour cela vous pouvez écrire en Markdown votre code ainsi :
+[Ajouter éventuellement des exemples de code pour montrer l'élégence de votre solution, pour cela vous pouvez écrire en Markdown votre code.]
 
-<pre>
+Un exemple de fabricateur dans notre code sont les aliments qui servent à nos recettes. On a par exemple une classe "Salad" qui hérite de la classe "Food".
+
 ```java
-public class Factory {
-    public static Object createObject(String type) {
-        if (type.equals("type1")) {
-            return new Type1();
-        } else if (type.equals("type2")) {
-            return new Type2();
-        }
-        return null;
+public class Food extends Item {
+
+    public Food(int xPos, int yPos, String name) {
+        super(xPos, yPos, name);
+    }
+}
+
+public class Salad extends Food {
+    public Salad(int xPos, int yPos) {
+        super(xPos, yPos, "Salad");
     }
 }
 ```
-</pre>
 
-]
+#### 2. [Singleton]
+
+Notre singleton pattern est notre personnage :
+
+```java
+Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[8][8]);
+```
+
+#### 3. [Decorator]
+
+Notre décorateur permet d'ajouter des cases sur la map avec des comportements différents en utilisant simplement une interface, par exemple notre interface "InteractTile" permet d'ajouter un comportement sur une case (Qui peut être une machine, ou une autre case), comme par exemple poser-prendre un item, essayer de le transformer (De le cuire ou de le couper).
+
+Exemple de la classe CookingPlate qui est une case "Machine" à qui on a donné un comportement :
+
+```java
+public class CookingPlate extends Machine implements InteractTile{
+    public CookingPlate(String label, String path, int x, int y) {
+        super(label, path, x, y);
+    }
+
+    @Override
+    public void interact(GameManager gm) {
+        try {
+            if (holding instanceof Food) {
+                Food transformedFood = TryTransform((Food) holding, this);
+                holding = transformedFood;
+            }
+        } catch (InstantiationException | IllegalAccessException | InterruptedException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+#### 5. [Bridge]
+
+Pas sur q'on l'est
+
+#### 4. [FlyWeight]
+
+Pas sur q'on l'est
 
 ---
 # Partie pédagogique
-
 
 ### En quoi la POO vous a été utile
 
 [Par exemple, expliquez que vous auriez éprouvé des difficultés à gérer les collisions si vous n'aviez pas utilisé la POO, ou que vous avez pu facilement ajouter des fonctionnalités à votre jeu grâce à la POO
 Minimum 15 lignes (personnalisé en fonction de votre projet)]
 
+On pense que sans POO ça aurait été très compliqué. De faire de l'objet, quelque soit le language, permet d'optimiser et de rendre le code plus facile à lire, à comprendre et surtout à modifier.
 
-### Intêret de l'exercise
+Par exemple dans notre jeu, on a la possibilité d'ajouter des éléments très rapidement grâce à nos design patterns et nos classes. Que l'élément soit une case, un comportement, ou un item, il est très facile d'en ajouter ou d'en supprimer selon nos besoins.
+
+Il est aussi très facile à lire, les fichiers sont séparés, avec peu de contenu, ce qui permet de s'y retrouver et aussi si quelqun reprend notre code il ne sera pas trop compliqué de comprendre comment sont organisées les choses.
+
+### Intêret de l'exercice
 
 [Décrivez ici si vous avez compris un concept particulier que vous n'aviez pas compris en cours, inversement si vous pensiez qu'il était possible de faire qqchose mais que cela ne s'est pas passé comme prévu]
+
+
 
 ### Concluez
 
 [Plus globalement, quel est votre ressenti sur ce projet
 Minimum 5 lignes]
+
+Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet
