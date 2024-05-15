@@ -70,6 +70,8 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 
 [C'est ici que vous me dites ce que vous savez que vous avez mal fait, expliquez pourquoi vous avez fait ce choix (manque de temps, manque de compétence, trop pénible à faire, etc.)]
 
+******
+
 ### Difficultés rencontrées
 
 #### 1. [Génération dynamique des ... pour ...]
@@ -80,6 +82,19 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 
 [Exemple : Nous n'avons pas réussi à gérer les collisions, PARCE QUE, mes objets n'héritaient pas d'une classe commune, car nos objets héirtaient de ... et nos personnages de ...]
 
+La gestion des collisions est effectuée en verifiant que la case en face du joueur à comme sprite "floor". Si c'est du sol, le joueur peut avancer.
+
+```java
+private void collisionCheck(double nXpos, double nYpos) {
+    int tileX = (int) (nXpos / 64); 
+    int tileY = (int) (nYpos / 64); 
+
+    if(tileset[tileX][tileY].getPath() == "sprites/floor.png") {
+        xPos = nXpos;
+        yPos = nYpos;
+    }
+}
+```
 
 ### *Design Patterns* mis en oeuvre
 
