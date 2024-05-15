@@ -54,17 +54,18 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 + de machines
 + temps limite de préparation de la recette
 + maps générées aléatoirement, ou juste des différentes maps
++ un deuxième joueur
 
 ---
 # Partie "Développeur" (plus technique) :
-
 
 ### Implémentations remarquables
 
 [Si pendant votre implémentation, vous trouvez que vous pouvez être particulièrment fiers d'une partie de votre code, décrivez là ici ; par exemple si vous avez généré une carte de manière procédurale, ou à l'aide d'un fichier]
 
-- Génération d'une map à partir d'un fichier texte
-- Annotations de code (Modularité) qui permettent de créer facilement et rapidement des ingrédients, des recettes et des blocs
+- Génération d'une map à partir d'un fichier texte.
+- Annotations de code (Modularité) qui permettent de créer facilement et rapidement des ingrédients, des recettes et des blocs.
+- Les magnifiques sprites déssinés à la main.
 
 ### Faiblesses du code
 
@@ -77,6 +78,50 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 #### 1. [Génération dynamique des ... pour ...]
 
 [Expliquez ici la difficulté rencontrée et comment vous l'avez contournée]
+
+- Génération de la map
+
+On a eu de légères difficultés à générer la map, car on avait des problèmes de séparateurs, comment gérer le fait qu'un chiffre est récupéré après l'autre.
+
+Voilà le code qui récupère la map :
+
+```java
+InputStream is = getClass().getResourceAsStream("Map/"+mapName+".txt");
+BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+int c = 0;
+int r = 0;
+
+while(c < sizeY && r < sizeX){
+    String line = br.readLine();
+
+    while(c < 9) {
+        String values[] = line.split("\\s+");
+        int val = Integer.parseInt(values[c]);
+
+        mapTiles[c][r] = val;
+        c++;
+    }
+    if(c == sizeY){
+        c = 0;
+        r++;
+    }
+}
+br.close();
+```
+
+- Affichage des sprites
+
+L'affichage à été un peu compliqué à réaliser, il fallait manipuler des "Images" et des "ImagesView".
+
+```java
+public ImageView createNewSprite(String path) {
+    Image image = new Image(getClass().getResourceAsStream(path));
+    ImageView imageView = new ImageView();
+    imageView.setImage(image);
+    return imageView;
+}
+```
 
 #### 2. [Gestion des collisions]
 
@@ -183,11 +228,17 @@ Il est aussi très facile à lire, les fichiers sont séparés, avec peu de cont
 
 [Décrivez ici si vous avez compris un concept particulier que vous n'aviez pas compris en cours, inversement si vous pensiez qu'il était possible de faire qqchose mais que cela ne s'est pas passé comme prévu]
 
-
+Pour ma part (Tom), les designs patterns étaient vraiment abstraits en cours, mais le projet a permis de m'éclairer un peu plus grâce à la pratique. De plus la notion d'interface m'était aussi assez étrangère, mais elle s'est révélée très utile et je pense avoir bien compris maintenant.
 
 ### Concluez
 
 [Plus globalement, quel est votre ressenti sur ce projet
 Minimum 5 lignes]
 
-Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet
+Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet est pour nous un grand facteur de motivation sur l'envie d'apprendre à programmer en POO.
+
+De plus, on trouve que la POO et les designs patterns sont vraiment utiles comme décrits sur les points ci dessus, malgré parfois la difficulté de comprendre le fonctionnement des patterns qui se révèlent parfois assez abstraits et compliqué a visualiser.
+
+Enfin, le fait de pouvoir coder/tester visuellement en direct est aussi un facteur de motivation qui nous pousse à faire que "yes sa marche !".
+
+De ce projet on en garde un bon souvenir, qu'on va précieusement archivé pour peut être plus tard s'en servir pour s'aider sur d'autres projets en POO.
