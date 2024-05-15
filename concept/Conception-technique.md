@@ -81,9 +81,9 @@ DEUXIEME RECETTE :
       - Il n'y as pas de vérification si la map est correcte en terme d'emplacement, si un emplacement joueur est défini et si les outils sont accessible. (Question de temps)
       - Définir une map trop grande (au dela de 14x14) peut causer des soucis au niveau de l'affichage où la map serait trop grande pour l'écran : cela est due au fait que chaque case est définie selon des pixels.
   
-- Comme par exemple dans Bin, certaines Tiles appellent des méthodes du gameManger en demandant ce dernier en paramêtre, ce qui a été mis en place pour gagner du temps au niveau du projet.
+- Comme par exemple dans Bin, certaines Tiles appellent des méthodes du gameManager en demandant ce dernier en paramêtre, ce qui a été mis en place pour gagner du temps au niveau du projet.
 - L'inventaire est une Tile qui contient un objet, et non pas juste un réel inventaire. Cela peut causer des soucis au niveau de l'affichage mais faire de cette façon est plus simple à coder.
-- La gridView de la map et autres liés à javaFx on été générées sur App pour que cela soit plus simple à mettre en place.
+- La gridView de la map et autres liés à javaFx on été générés depuis App pour que cela soit plus simple à mettre en place.
   
 - Nous vérifions la collision de bloc avec le chemin du sprite de la Tile en fâce : cela peut causer des soucis si on est ammené à modifier le nom de cette sprite.
 - Certains sprites sont liées au nom de classes et donc présententes le même problème. Ce choix à été fait pour simplifier le lien entre un objet et une sprite.
