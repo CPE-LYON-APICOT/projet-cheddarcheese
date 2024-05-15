@@ -247,6 +247,8 @@ On pense que sans POO ça aurait été très compliqué. De faire de l'objet, qu
 Par exemple dans notre jeu, on a la possibilité d'ajouter des éléments très rapidement grâce à nos design patterns et nos classes. Que l'élément soit une case, un comportement, ou un item, il est très facile d'en ajouter ou d'en supprimer selon nos besoins.
 Pour la nourriture, la POO nous permet de différencier entre les ingrédients, les ingrédients modifiables, bases de recettes et recettes finie : L'héritage permet aussi de réduire le code, en faisant par exemple sorte que nos objets nourritures ait tous des méthodes en commun, ce qui a permis de faire plus simplement la mise en place des transformations (Machines) de nourriture, qui s'applique à plusieurs classes différentes mais qui partagent les méthodes importantes.
 
+La notion de classes et interfaces permet aussi de donner une identité aux objets du jeu, nottament par exemple en opérant des vérifications si l'objet appartient à telle instance de classe, etc...
+
 Il est aussi très facile à lire, les fichiers sont séparés, avec peu de contenu, ce qui permet de s'y retrouver et aussi si quelqun reprend notre code il ne sera pas trop compliqué de comprendre comment sont organisées les choses.
 
 ### Intêret de l'exercice
