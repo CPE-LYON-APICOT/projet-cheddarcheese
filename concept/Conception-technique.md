@@ -28,7 +28,7 @@ Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il f
 
 [Décrivez ici l'objectif initial du projet, ne cherchez pas à le minorer si vous n'avez pas tout fini, décrivez ce que vous avez voulu faire]
 
-Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et construire le burger. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches <ZQSD>. L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches <LM>.
+Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et construire le burger. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches "ZQSD". L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches "LM".
 
 ## Résultat
 
@@ -37,14 +37,14 @@ Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro
 Nous avons atteind notre objectif initial qui était de pouvoir générer une cuisine selon un shéma voulu, de pouvoir ce déplacer à travers celle-ci en ayant la possibiliter de manipuler des ingrédients, de les transformer et de les assembler pour créer une recette. Actuellement dans le jeu, les ingrédients disponibles sont salade, tomate, steak et pain.
 
 Pour gagner la partie il faut en premier :
-- Prendre une tranche de pain dans le conteuneur à pain en interagissant avec <L>, le prendre avec <M> et le déposer sur une table.
+- Prendre une tranche de pain dans le conteuneur à pain en interagissant avec "L", le prendre avec "M" et le déposer sur une table.
 
 Ensuite dans n'importe quel ordre il faut :
-- Ajouter de la salade en interagissant avec <L> dans le conteneur à salade et le placer sur le pain avec <M>.
-- Prendre une tomate dans le conteneur de tomates avec <L>, la prendre avec <M> puis la déposer sur la planche à découper avec <M> puis interagir avec avec <L> pour découper la tomate. Une fois qu'elle est découpée la prendre avec <M> et ensuite la déposer sur le pain avec <M>.
-- Prendre un steak dans le conteneur de steak avec <L> et <M>, le déposer sur la plaque de cuisson avec <M>. Interagir avec <L> pour cuire le steak et une fois cuit, le prendre et le déposer sur le pain avec <M>
+- Ajouter de la salade en interagissant avec "L" dans le conteneur à salade et le placer sur le pain avec "M".
+- Prendre une tomate dans le conteneur de tomates avec "L", la prendre avec "M" puis la déposer sur la planche à découper avec "M" puis interagir avec avec "L" pour découper la tomate. Une fois qu'elle est découpée la prendre avec "M" et ensuite la déposer sur le pain avec "M".
+- Prendre un steak dans le conteneur de steak avec "L" et "M", le déposer sur la plaque de cuisson avec "M". Interagir avec "L" pour cuire le steak et une fois cuit, le prendre et le déposer sur le pain avec "M"
 
-Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain avec <L> et <M> et le déposer sur tous les ingrédients qu'on a ajouté. On obtient un magnifique burger !
+Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain avec "L" et "M" et le déposer sur tous les ingrédients qu'on a ajouté. On obtient un magnifique burger !
 
 ### Améliorations possibles
 
@@ -54,17 +54,18 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 + de machines
 + temps limite de préparation de la recette
 + maps générées aléatoirement, ou juste des différentes maps
++ un deuxième joueur (C'est chaud !)
 
 ---
 # Partie "Développeur" (plus technique) :
-
 
 ### Implémentations remarquables
 
 [Si pendant votre implémentation, vous trouvez que vous pouvez être particulièrment fiers d'une partie de votre code, décrivez là ici ; par exemple si vous avez généré une carte de manière procédurale, ou à l'aide d'un fichier]
 
-- Génération d'une map à partir d'un fichier texte
-- Annotations de code (Modularité) qui permettent de créer facilement et rapidement des ingrédients, des recettes et des blocs
+- Génération d'une map à partir d'un fichier texte.
+- Annotations de code (Modularité) qui permettent de créer facilement et rapidement des ingrédients, des recettes et des blocs.
+- Les magnifiques sprites déssinés à la main.
 
 ### Faiblesses du code
 
@@ -77,6 +78,50 @@ Enfin il faut de nouveau prendre une tranche de pain dans le conteneur à pain a
 #### 1. [Génération dynamique des ... pour ...]
 
 [Expliquez ici la difficulté rencontrée et comment vous l'avez contournée]
+
+- Génération de la map
+
+On a eu de légères difficultés à générer la map, car on avait des problèmes de séparateurs, comment gérer le fait qu'un chiffre est récupéré après l'autre.
+
+Voilà le code qui récupère la map :
+
+```java
+InputStream is = getClass().getResourceAsStream("Map/"+mapName+".txt");
+BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+int c = 0;
+int r = 0;
+
+while(c < sizeY && r < sizeX){
+    String line = br.readLine();
+
+    while(c < 9) {
+        String values[] = line.split("\\s+");
+        int val = Integer.parseInt(values[c]);
+
+        mapTiles[c][r] = val;
+        c++;
+    }
+    if(c == sizeY){
+        c = 0;
+        r++;
+    }
+}
+br.close();
+```
+
+- Affichage des sprites
+
+L'affichage à été un peu compliqué à réaliser, il fallait manipuler des "Images" et des "ImagesView".
+
+```java
+public ImageView createNewSprite(String path) {
+    Image image = new Image(getClass().getResourceAsStream(path));
+    ImageView imageView = new ImageView();
+    imageView.setImage(image);
+    return imageView;
+}
+```
 
 #### 2. [Gestion des collisions]
 
@@ -157,14 +202,6 @@ public class CookingPlate extends Machine implements InteractTile{
 }
 ```
 
-#### 5. [Bridge]
-
-Pas sur q'on l'est
-
-#### 4. [FlyWeight]
-
-Pas sur q'on l'est
-
 ---
 # Partie pédagogique
 
@@ -183,11 +220,17 @@ Il est aussi très facile à lire, les fichiers sont séparés, avec peu de cont
 
 [Décrivez ici si vous avez compris un concept particulier que vous n'aviez pas compris en cours, inversement si vous pensiez qu'il était possible de faire qqchose mais que cela ne s'est pas passé comme prévu]
 
-
+Pour ma part (Tom), les designs patterns étaient vraiment abstraits en cours, mais le projet a permis de m'éclairer un peu plus grâce à la pratique. De plus la notion d'interface m'était aussi assez étrangère, mais elle s'est révélée très utile et je pense avoir bien compris maintenant.
 
 ### Concluez
 
 [Plus globalement, quel est votre ressenti sur ce projet
 Minimum 5 lignes]
 
-Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet
+Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet est pour nous un grand facteur de motivation sur l'envie d'apprendre à programmer en POO.
+
+De plus, on trouve que la POO et les designs patterns sont vraiment utiles comme décrits sur les points ci dessus, malgré parfois la difficulté de comprendre le fonctionnement des patterns qui se révèlent parfois assez abstraits et compliqué a visualiser.
+
+Enfin, le fait de pouvoir coder/tester visuellement en direct est aussi un facteur de motivation qui nous pousse à faire que "yes sa marche !".
+
+De ce projet on en garde un bon souvenir, qu'on va précieusement archivé pour peut être plus tard s'en servir pour s'aider sur d'autres projets en POO.
