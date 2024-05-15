@@ -104,6 +104,7 @@ DEUXIEME RECETTE :
 - Génération de la map
 
 On a eu de légères difficultés à générer la map, car on avait des problèmes de séparateurs, comment gérer le fait qu'un chiffre est récupéré après l'autre.
+Donc nous utilisons un split, qui prend une ligne du fichier txt et la converti en un array de nombres.
 
 Voilà le code qui récupère la map :
 
@@ -150,6 +151,9 @@ Un autre point de difficultés avec les sprites etait de pouvoir modifier le spr
 #### 2. [Gestion des collisions]
 
 [Exemple : Nous n'avons pas réussi à gérer les collisions, PARCE QUE, mes objets n'héritaient pas d'une classe commune, car nos objets héirtaient de ... et nos personnages de ...]
+
+Dans un premier temps, nous avons tenter de mettre en place des coordonées de joueur en double, ce qui aurait permit au joueur d'exister entre deux cases, mais il etait assez compliqué de calculer si le joueur entrait en collision avec un mur ou autre, car les coordonées du joueur ne correspondaient pas à celles du sprite entier mais seulement aux coordonées du point en haut à droite du sprite.
+Donc nous sommes revenus vers des coordonées simples (int), sacrifiant la fluidité de mouvement mais permettant de s'assurer du bon fonctionnement du système de collisions.
 
 La gestion des collisions est effectuée en verifiant que la case en face du joueur à comme sprite "floor". Si c'est du sol, le joueur peut avancer.
 
