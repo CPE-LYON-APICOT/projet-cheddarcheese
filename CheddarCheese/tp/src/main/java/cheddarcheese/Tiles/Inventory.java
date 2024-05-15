@@ -11,7 +11,6 @@ public class Inventory extends Tile implements ItemHolder{
 
     public void setItem(Item item){
         holding = item;
-        System.out.println("I now have item : " + holding.getClass());
     }
 
     public Item getItem(){
@@ -19,7 +18,6 @@ public class Inventory extends Tile implements ItemHolder{
     }
 
     public Item popItem(){
-        System.out.println("Depositing item : " + holding.getClass());
         Item returning = holding;
         holding = null;
         return returning;

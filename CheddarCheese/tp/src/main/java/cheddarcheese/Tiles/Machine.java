@@ -17,7 +17,6 @@ public abstract class Machine extends Table {
             Transformable[] transformable = transformables.value();
             for (Transformable t : transformable) {
                 if(t.machine().equals(machine.getClass())){
-                    System.out.println("On peut transformer "+food.getClass().getSimpleName()+" avec "+machine.getClass().getSimpleName()+" en "+t.transformsTo().getSimpleName());
                     //Thread.sleep(t.duration() * 1000);
                     Class<? extends Food> transformedClass = t.transformsTo();
                     try {

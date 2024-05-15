@@ -21,7 +21,6 @@ public class BaseForRecipe extends Food {
     public void addIngredient(Food ingredient) {
         ingredients.add(ingredient);
         ingredient.removeImg();
-        System.out.println("INGREDIENT");
     }
 
     public Food checkIngredients(Food topIngredient) {
