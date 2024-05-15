@@ -3,7 +3,6 @@ package cheddarcheese.Tiles;
 import java.lang.reflect.InvocationTargetException;
 
 import cheddarcheese.GameManager;
-import cheddarcheese.Player;
 import cheddarcheese.Foods.Food;
 
 public class CookingPlate extends Machine implements InteractTile{

@@ -12,10 +12,12 @@ import cheddarcheese.Tiles.*;
 
 public class GameMap {
     private Tile tiles[][];
-    private int sizeX = 9;
-    private int sizeY = 9;
+    private int sizeX;
+    private int sizeY;
 
-    public GameMap() {
+    public GameMap(int sizeX, int sizeY) {
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         tiles = new Tile[sizeX][sizeY];
     }
 
@@ -42,6 +44,7 @@ public class GameMap {
         Foodbox breadFoodbox = new Foodbox("Bread Foodbox", "sprites/bread_foodbox_closed.png", 0, 0, Bread.class);
 
         Inventory inventory = new Inventory("Inventory", "sprites/inventory.png", 0, 0);
+        OrderInfo orderInfo = new OrderInfo("OrderInfo", "sprites/inventory.png", 0, 0);
 
         try{
             InputStream is = getClass().getResourceAsStream("Map/"+mapName+".txt");
@@ -53,7 +56,7 @@ public class GameMap {
             while(c < sizeY && r < sizeX){
                 String line = br.readLine();
 
-                while(c < 9) {
+                while(c < sizeX) {
                     String values[] = line.split("\\s+");
                     int val = Integer.parseInt(values[c]);
 
@@ -67,8 +70,8 @@ public class GameMap {
             }
             br.close();
 
-            for(int i = 0; i < 9;i++){
-                for(int j = 0; j < 9; j++) {
+            for(int i = 0; i < sizeX;i++){
+                for(int j = 0; j < sizeY; j++) {
                 
                     switch (mapTiles[i][j]) {
                         case 0:
@@ -97,6 +100,9 @@ public class GameMap {
                             break;
                         case 8:
                             tiles[i][j] = new Inventory("Inventory", inventory.getPath(), i, j);
+                            break;
+                        case 81:
+                            tiles[i][j] = new Inventory("Recipe", orderInfo.getPath(), i, j);
                             break;
                         case 9:
                             tiles[i][j] = new Floor("Floor", floor.getPath(), i, j);

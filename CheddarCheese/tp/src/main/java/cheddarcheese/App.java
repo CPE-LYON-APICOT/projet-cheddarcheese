@@ -20,6 +20,8 @@ import cheddarcheese.Tiles.Tile;
 public class App extends Application{
 
     private static GameManager gm;
+    private static int boardX = 12;
+    private static int boardY = 12;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,19 +30,19 @@ public class App extends Application{
         
         SpriteManager spriteManager = new SpriteManager();
 
-        GameMap map = new GameMap();
+        GameMap map = new GameMap(boardX, boardY);
         map.loadMap("map");
         Tile mapTiles[][] = map.getTiles();
         
-        for(int i = 0; i < 9;i++){
-            for(int j = 0; j < 9; j++) {
+        for(int i = 0; i < boardX;i++){
+            for(int j = 0; j < boardY; j++) {
                 Tile tile = mapTiles[i][j];
                 ImageView spriteN = spriteManager.createNewSprite(tile.getPath());
                 game.add(spriteN, tile.getX(), tile.getY());
             }
         }
 
-        Scene scene = new Scene(new Group(game, playerPane), 9 * 64, 9 * 64);
+        Scene scene = new Scene(new Group(game, playerPane), boardX * 64, boardY * 64);
         stage.setScene(scene);
         stage.setTitle("Cheddar Cheese");
         stage.show();
@@ -48,9 +50,9 @@ public class App extends Application{
         String pathC = "sprites/char_s1.png";
         ImageView spriteC = spriteManager.createNewSprite(pathC);
 
-        Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[8][8]);
+        Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[boardX-1][boardY-1]);
 
-        gm = new GameManager(game, playerPane, scene, character, spriteManager);
+        gm = new GameManager(game, playerPane, scene, character, spriteManager, boardX-1, boardY-1);
     }
 
     static void setRoot(String fxml) throws IOException {

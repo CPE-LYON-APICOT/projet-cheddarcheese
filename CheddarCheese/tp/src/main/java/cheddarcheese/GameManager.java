@@ -7,13 +7,13 @@ import cheddarcheese.Tiles.ItemHolder;
 import cheddarcheese.Tiles.Tile;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import cheddarcheese.Foods.Interfaces.Recette;
@@ -29,13 +29,18 @@ public class GameManager {
     private SpriteManager spm;
     private Recette curRecipe;
     private List<Recette> recipes;
+    private List<ImageView> imgRecipe;
+    private int invPosX;
+    private int invPosY;
 
-    public GameManager(GridPane map, Pane playPane, Scene scene, Player character, SpriteManager spm){
+    public GameManager(GridPane map, Pane playPane, Scene scene, Player character, SpriteManager spm, int invPosX, int invPosY){
         this.map = map;
         this.playerPane = playPane;
         this.scene = scene;
         this.player = character;
         this.spm = spm;
+        this.invPosX = invPosX;
+        this.invPosY = invPosY;
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -67,6 +72,12 @@ public class GameManager {
             }
         });
 
+        imgRecipe = new ArrayList<>();
+
+        for(int i = 0; i < invPosX; i ++){
+            imgRecipe.add(null);
+        }
+
         recipes = getRecipesFromAnnotation(Bread.class);
         selectRandomRecipe();
     }
@@ -89,12 +100,33 @@ public class GameManager {
         Random rand = new Random();
         int index = rand.nextInt(recipes.size());
         curRecipe = recipes.get(index);
-        
-        // Now you have the recipes stored in the 'recipes' list
-        // You can iterate over this list and do whatever you need with the recipes
-        System.out.println("Ingredients: " + curRecipe.ingredients().length);
-        System.out.println("Top: " + curRecipe.top());
-        System.out.println("Transforms To: " + curRecipe.transformsTo());
+        int posX;
+
+        for(int i = 0; i < invPosX; i++){
+            if(imgRecipe.get(i) != null) {
+                map.getChildren().remove(imgRecipe.get(i));
+            } 
+        }
+
+        ImageView img = spm.createNewSprite("sprites/" + curRecipe.transformsTo().getSimpleName() + ".png");
+        map.add(img, 0 , invPosY);
+        imgRecipe.set(0, img);
+
+        ImageView breadImg = spm.createNewSprite("sprites/Bread.png");
+        map.add(breadImg, 1 , invPosY);
+        imgRecipe.set(1, breadImg);
+
+        posX = 2;
+        for(Class<?> ingredient : curRecipe.ingredients()) {
+            ImageView ingredientImg = spm.createNewSprite("sprites/" + ingredient.getSimpleName() + ".png");
+            map.add(ingredientImg, posX, invPosY);
+            imgRecipe.set(posX, ingredientImg);
+            posX++;
+        }
+
+        ImageView topImg = spm.createNewSprite("sprites/" + curRecipe.top().getSimpleName() + ".png");
+        map.add(topImg, posX, invPosY);
+        imgRecipe.set(posX, topImg);
     }
 
     public void interactWithTile() {
@@ -116,7 +148,7 @@ public class GameManager {
             if (blockItem != null && userItem == null) {
                 Item popped = blockInventory.popItem();
                 playerInventory.setItem(popped);
-                popped.moveToInventory();
+                popped.moveToInventory(invPosX, invPosY);
             } else if (blockItem == null && userItem != null) {
                 Item popped = playerInventory.popItem();
                 blockInventory.setItem(popped);

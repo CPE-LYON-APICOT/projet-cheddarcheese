@@ -83,9 +83,9 @@ abstract public class Item {
         }
     }
 
-    public void moveToInventory(){
-        this.xPos = 8;
-        this.yPos = 8;
+    public void moveToInventory(int X, int Y){
+        this.xPos = X;
+        this.yPos = Y;
         updateImagePosition();
     }
 
