@@ -15,8 +15,6 @@ public class Foodbox extends Table implements InteractTile{
 
     @Override
     public void interact(GameManager gm) {
-        System.out.println("Foodbox");
-
         if (this.holding == null && containedClass != null) {
             try {
                 Constructor<?> constructor = containedClass.getConstructor(int.class, int.class);
