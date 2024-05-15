@@ -1,4 +1,4 @@
-package cheddarcheese;
+package cheddarcheese.Foods.Interfaces;
 
 import java.lang.annotation.*;
 

@@ -53,11 +53,11 @@ abstract public class Item {
     public void setImgView(ImageView img){
         this.image = img;
         updateImagePosition();
-        setImage(this.name);
+        setItemImage(this.name);
     }
 
-    public void setImage(String filename) {
-        Image itemImage = new Image(getClass().getResourceAsStream("sprites/" + filename + ".png"));
+    public void setItemImage(String filename) {
+        Image itemImage = new Image(Item.class.getResourceAsStream("sprites/" + filename + ".png"));
         image.setImage(itemImage);
     }
 

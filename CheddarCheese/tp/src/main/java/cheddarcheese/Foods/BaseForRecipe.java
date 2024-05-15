@@ -1,8 +1,10 @@
-package cheddarcheese;
+package cheddarcheese.Foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import cheddarcheese.Foods.Interfaces.Recette;
 
 public class BaseForRecipe extends Food {
     private List<Food> ingredients;

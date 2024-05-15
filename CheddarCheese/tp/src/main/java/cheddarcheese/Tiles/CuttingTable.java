@@ -2,9 +2,9 @@ package cheddarcheese.Tiles;
 
 import java.lang.reflect.InvocationTargetException;
 
-import cheddarcheese.Food;
 import cheddarcheese.GameManager;
 import cheddarcheese.Player;
+import cheddarcheese.Foods.Food;
 
 public class CuttingTable extends Machine implements InteractTile{
     public CuttingTable(String label, String path, int x, int y) {

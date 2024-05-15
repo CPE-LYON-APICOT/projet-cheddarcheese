@@ -1,6 +1,8 @@
-package cheddarcheese;
+package cheddarcheese.Foods;
 
 import cheddarcheese.Tiles.CuttingTable;
+import cheddarcheese.Foods.Interfaces.Transformable;
+import cheddarcheese.Foods.Interfaces.Transformables;
 import cheddarcheese.Tiles.CookingPlate;
 
 @Transformables({

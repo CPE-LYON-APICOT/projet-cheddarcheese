@@ -1,6 +1,7 @@
-package cheddarcheese;
+package cheddarcheese.Foods.Interfaces;
 
 import java.lang.annotation.*;
+import cheddarcheese.Foods.Food;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

@@ -1,4 +1,7 @@
-package cheddarcheese;
+package cheddarcheese.Foods;
+
+import cheddarcheese.Foods.Interfaces.Recette;
+import cheddarcheese.Foods.Interfaces.Recettes;
 
 @Recettes({
     @Recette(ingredients = {SteakCooked.class, SlicedTomato.class, Salad.class}, top = Bread.class, transformsTo = Burger.class),

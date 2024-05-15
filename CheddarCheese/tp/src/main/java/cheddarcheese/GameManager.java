@@ -1,5 +1,7 @@
 package cheddarcheese;
 
+import cheddarcheese.Foods.BaseForRecipe;
+import cheddarcheese.Foods.Food;
 import cheddarcheese.Tiles.InteractTile;
 import cheddarcheese.Tiles.ItemHolder;
 import cheddarcheese.Tiles.Tile;
