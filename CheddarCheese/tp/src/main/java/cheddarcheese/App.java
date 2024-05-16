@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 import cheddarcheese.Tiles.Inventory;
 import cheddarcheese.Tiles.Tile;
@@ -17,14 +19,18 @@ import cheddarcheese.Tiles.Tile;
 /**
  * JavaFX App
  */
-public class App extends Application{
+public class App extends Application implements Observer{
 
     private static GameManager gm;
     private static int boardX = 12;
     private static int boardY = 12;
 
+    @SuppressWarnings("deprecation")
     @Override
     public void start(Stage stage) throws IOException {
+
+     
+
         GridPane game = new GridPane();
         Pane playerPane = new Pane();
         
@@ -66,5 +72,11 @@ public class App extends Application{
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void update(Observable arg0, Object arg1) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

@@ -1,6 +1,7 @@
 package cheddarcheese.Tiles;
 
 import cheddarcheese.GameManager;
+import cheddarcheese.Score;
 
 public class Deposit extends Tile implements InteractTile{
     public Deposit(String label, String path, int x, int y) {
@@ -13,6 +14,8 @@ public class Deposit extends Tile implements InteractTile{
             if (gm.getPlayer().getInventory().getItem().getClass() == gm.getRecipeResult()) {
                 gm.selectRandomRecipe();
                 gm.getPlayer().getInventory().deleteItem();
+
+                Score.getInstance().finirRecette(gm.getCurRecipe());
             }
         }
     }

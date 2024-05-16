@@ -2,6 +2,8 @@ package cheddarcheese.Tiles;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+
+import cheddarcheese.Score;
 import cheddarcheese.Foods.Food;
 import cheddarcheese.Foods.Interfaces.Transformable;
 import cheddarcheese.Foods.Interfaces.Transformables;
@@ -23,7 +25,7 @@ public abstract class Machine extends Table {
                         Constructor<? extends Food> constructor = transformedClass.getDeclaredConstructor(int.class, int.class);
                         Food newitem = constructor.newInstance(food.getXPos(), food.getYPos());
                         newitem.setImgView(food.image);
-
+                        Score.getInstance().augmenterScore(t.bonus());
                         return newitem;
                     } catch (NoSuchMethodException e) {
                         System.err.println("No constructor found for " + transformedClass.getSimpleName() + " that takes xcoord and ycoord.");

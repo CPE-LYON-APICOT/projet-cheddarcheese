@@ -15,23 +15,31 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
 import cheddarcheese.Foods.Interfaces.Recette;
 import cheddarcheese.Foods.Interfaces.Recettes;
 import cheddarcheese.Foods.Bread;
 import java.util.Random;
 
-public class GameManager {
+public class GameManager implements Observer {
     private GridPane map;
     private Pane playerPane;
     private Scene scene;
     private Player player;
     private SpriteManager spm;
     private Recette curRecipe;
+    public Recette getCurRecipe() {
+        return curRecipe;
+    }
+
     private List<Recette> recipes;
     private List<ImageView> imgRecipe;
     private int invPosX;
     private int invPosY;
 
+    @SuppressWarnings("deprecation")
     public GameManager(GridPane map, Pane playPane, Scene scene, Player character, SpriteManager spm, int invPosX, int invPosY){
         this.map = map;
         this.playerPane = playPane;
@@ -40,7 +48,18 @@ public class GameManager {
         this.spm = spm;
         this.invPosX = invPosX;
         this.invPosY = invPosY;
+        //Maj score
+        Score.getInstance().addObserver(this);
+ // usique
+ 
+ Score.getInstance().addObserver(new Observer() {
 
+    @Override
+    public void update(Observable arg0, Object arg1) {
+
+    }
+    
+ });
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -180,5 +199,12 @@ public class GameManager {
 
     public Class<?> getRecipeResult(){
         return this.curRecipe.transformsTo();
+    }
+
+    @Override
+    public void update(Observable arg0, Object arg1) {
+        
+        Score s = (Score)arg0;
+        System.out.println("Score : "+s.getScore());
     }
 }

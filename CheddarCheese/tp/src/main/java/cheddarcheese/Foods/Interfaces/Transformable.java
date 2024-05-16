@@ -12,4 +12,5 @@ public @interface Transformable {
     int duration() default 10;
     Class<? extends Food> transformsTo();
     boolean destroysUponTimeOut() default false;
+    int bonus() default 30;
 }
