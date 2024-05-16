@@ -4,6 +4,10 @@ import java.util.Observable;
 
 import cheddarcheese.Foods.Interfaces.Recette;
 import javafx.scene.text.Text;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import java.io.InputStream;
 
 public class Score extends Observable {
     private static Score instance;
@@ -35,6 +39,23 @@ public class Score extends Observable {
 
         this.setChanged();
         this.notifyObservers(instance);
+
+        String soundFile = "music/coin.wav";
+        InputStream inputStream = getClass().getResourceAsStream(soundFile);
+    
+        if (inputStream != null) {
+            try {
+                String url = getClass().getResource(soundFile).toURI().toString();
+    
+                Media sound = new Media(url);
+                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                mediaPlayer.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.err.println("Failed to load sound file: " + soundFile);
+        }
     }
 
     public void finirRecette(Recette curRecipe) {
