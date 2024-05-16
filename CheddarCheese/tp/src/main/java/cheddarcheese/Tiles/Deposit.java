@@ -7,6 +7,7 @@ public class Deposit extends Tile implements InteractTile{
         super(label, path, x, y);
     }
 
+    //Deposit the item if it is the one of the order
     @Override
     public void interact(GameManager gm) {
         if (gm.getPlayer().getInventory().getItem() != null){

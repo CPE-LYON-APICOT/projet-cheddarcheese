@@ -13,6 +13,7 @@ public class Foodbox extends Table implements InteractTile{
         this.containedClass = containedClass;
     }
 
+    //Spawns an item of corresponding quality when interacted with, only if there's not already one
     @Override
     public void interact(GameManager gm) {
         if (this.holding == null && containedClass != null) {

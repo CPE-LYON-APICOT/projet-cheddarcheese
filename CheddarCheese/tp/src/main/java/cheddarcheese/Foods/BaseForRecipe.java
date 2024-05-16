@@ -14,15 +14,18 @@ public class BaseForRecipe extends Food {
         this.ingredients = new ArrayList<>();
     }
 
+    // Set the ingredients for the recipes
     public void setIngredients(Food[] ingredients) {
         this.ingredients = new ArrayList<>(Arrays.asList(ingredients));
     }
 
+    // Add an ingredient to the base's array
     public void addIngredient(Food ingredient) {
         ingredients.add(ingredient);
         ingredient.removeImg();
     }
 
+    // Check if the list of ingredients is complete and if the top is the good one
     public Food checkIngredients(Food topIngredient) {
         for (Recette recette : getClass().getAnnotationsByType(Recette.class)) {
             if (recette.top() == topIngredient.getClass()) {

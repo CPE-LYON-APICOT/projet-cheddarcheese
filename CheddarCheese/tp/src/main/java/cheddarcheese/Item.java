@@ -36,6 +36,7 @@ abstract public class Item {
         updateImagePosition();
     }
 
+    //Set both X and Y positions
     public void setXYPos(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -83,12 +84,14 @@ abstract public class Item {
         }
     }
 
+    //Moves the item to the specified location of inventory
     public void moveToInventory(int X, int Y){
         this.xPos = X;
         this.yPos = Y;
         updateImagePosition();
     }
 
+    //Deletes the image from the map
     public void removeImg(){
         Parent parent = image.getParent();
     
