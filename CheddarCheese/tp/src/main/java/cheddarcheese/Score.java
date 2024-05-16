@@ -3,11 +3,13 @@ package cheddarcheese;
 import java.util.Observable;
 
 import cheddarcheese.Foods.Interfaces.Recette;
+import javafx.scene.text.Text;
 
 public class Score extends Observable {
     private static Score instance;
     private int score;
     private int recipesCount;
+    private Text visual;
 
     public int getScore() {
         return score;
@@ -29,6 +31,8 @@ public class Score extends Observable {
     public void augmenterScore(int scoreEnPlus) {
         this.score += scoreEnPlus;
 
+        this.visual.setText(String.valueOf(score));
+
         this.setChanged();
         this.notifyObservers(instance);
     }
@@ -40,5 +44,9 @@ public class Score extends Observable {
         if (this.recipesCount % 3 == 0) {
             augmenterScore(50);
         }
+    }
+
+    public void setTextVisual(Text textVisual) {
+        this.visual = textVisual;
     }
 }

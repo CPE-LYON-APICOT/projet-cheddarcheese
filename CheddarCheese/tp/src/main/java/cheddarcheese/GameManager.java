@@ -12,6 +12,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +101,15 @@ public class GameManager implements Observer {
 
         recipes = getRecipesFromAnnotation(Bread.class);
         selectRandomRecipe();
+
+        Text scoreText = new Text();
+        scoreText.setText("0");
+        scoreText.setFont(Font.font(24));
+        scoreText.setFill(Color.WHITE);
+        
+        map.add(scoreText, 0, 0);
+
+        Score.getInstance().setTextVisual(scoreText);
     }
 
     //Get recipes included in the Bread class' @Recettes annotation
