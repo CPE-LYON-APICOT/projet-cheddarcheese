@@ -10,6 +10,7 @@ public class CookingPlate extends Machine implements InteractTile{
         super(label, path, x, y);
     }
 
+    //Transforms the item if it uses the cooking plate
     @Override
     public void interact(GameManager gm) {
         try {

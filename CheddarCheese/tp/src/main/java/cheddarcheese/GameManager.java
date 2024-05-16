@@ -100,6 +100,7 @@ public class GameManager implements Observer {
         selectRandomRecipe();
     }
 
+    //Get recipes included in the Bread class' @Recettes annotation
     private static List<Recette> getRecipesFromAnnotation(Class<?> clazz) {
         List<Recette> recipes = new ArrayList<>();
         
@@ -114,6 +115,7 @@ public class GameManager implements Observer {
         return recipes;
     }
 
+    //Select a random recipe to be displayed
     public void selectRandomRecipe(){
         Random rand = new Random();
         int index = rand.nextInt(recipes.size());
@@ -153,6 +155,7 @@ public class GameManager implements Observer {
         if(block instanceof InteractTile) ((InteractTile) block).interact(this);
     }
 
+    //Item interactions with a tile that can hold an item
     public void interactWithItemHolder() {
         Tile block = player.getFrontBlock();
 
@@ -183,6 +186,7 @@ public class GameManager implements Observer {
         }
     }
 
+    //Visually add an item to the map
     public void addItemToMap(Item item, int x, int y) {
         ImageView img = spm.createNewSprite("sprites/" + item.getName() + ".png");
         item.setImgView(img);
