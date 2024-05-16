@@ -81,9 +81,9 @@ DEUXIEME RECETTE :
 - Il n'y as pas de vérification si la map est correcte en terme d'emplacement, si un emplacement joueur est défini et si les outils sont accessible. (Question de temps)
 - Définir une map trop grande (au dela de 14x14) peut causer des soucis au niveau de l'affichage où la map serait trop grande pour l'écran : cela est due au fait que chaque case est définie selon des pixels.
   
-- Comme par exemple dans Bin, certaines Tiles appellent des méthodes du gameManger en demandant ce dernier en paramêtre, ce qui a été mis en place pour gagner du temps au niveau du projet.
+- Comme par exemple dans Bin, certaines Tiles appellent des méthodes du gameManager en demandant ce dernier en paramêtre, ce qui a été mis en place pour gagner du temps au niveau du projet.
 - L'inventaire est une Tile qui contient un objet, et non pas juste un réel inventaire. Cela peut causer des soucis au niveau de l'affichage mais faire de cette façon est plus simple à coder.
-- La gridView de la map et autres liés à javaFx on été générées sur App pour que cela soit plus simple à mettre en place.
+- La gridView de la map et autres liés à javaFx on été générés depuis App pour que cela soit plus simple à mettre en place.
   
 - Nous vérifions la collision de bloc avec le chemin du sprite de la Tile en fâce : cela peut causer des soucis si on est ammené à modifier le nom de cette sprite.
 - Certains sprites sont liées au nom de classes et donc présententes le même problème. Ce choix à été fait pour simplifier le lien entre un objet et une sprite.
@@ -102,6 +102,7 @@ DEUXIEME RECETTE :
 - Génération de la map
 
 On a eu de légères difficultés à générer la map, car on avait des problèmes de séparateurs, comment gérer le fait qu'un chiffre est récupéré après l'autre.
+Donc nous utilisons un split, qui prend une ligne du fichier txt et la converti en un array de nombres.
 
 Voilà le code qui récupère la map :
 
@@ -148,6 +149,9 @@ Un autre point de difficultés avec les sprites etait de pouvoir modifier le spr
 #### 2. [Gestion des collisions]
 
 [Exemple : Nous n'avons pas réussi à gérer les collisions, PARCE QUE, mes objets n'héritaient pas d'une classe commune, car nos objets héirtaient de ... et nos personnages de ...]
+
+Dans un premier temps, nous avons tenter de mettre en place des coordonées de joueur en double, ce qui aurait permit au joueur d'exister entre deux cases, mais il etait assez compliqué de calculer si le joueur entrait en collision avec un mur ou autre, car les coordonées du joueur ne correspondaient pas à celles du sprite entier mais seulement aux coordonées du point en haut à droite du sprite.
+Donc nous sommes revenus vers des coordonées simples (int), sacrifiant la fluidité de mouvement mais permettant de s'assurer du bon fonctionnement du système de collisions.
 
 La gestion des collisions est effectuée en verifiant que la case en face du joueur à comme sprite "floor". Si c'est du sol, le joueur peut avancer.
 
@@ -243,6 +247,8 @@ On pense que sans POO ça aurait été très compliqué. De faire de l'objet, qu
 
 Par exemple dans notre jeu, on a la possibilité d'ajouter des éléments très rapidement grâce à nos design patterns et nos classes. Que l'élément soit une case, un comportement, ou un item, il est très facile d'en ajouter ou d'en supprimer selon nos besoins.
 Pour la nourriture, la POO nous permet de différencier entre les ingrédients, les ingrédients modifiables, bases de recettes et recettes finie : L'héritage permet aussi de réduire le code, en faisant par exemple sorte que nos objets nourritures ait tous des méthodes en commun, ce qui a permis de faire plus simplement la mise en place des transformations (Machines) de nourriture, qui s'applique à plusieurs classes différentes mais qui partagent les méthodes importantes.
+
+La notion de classes et interfaces permet aussi de donner une identité aux objets du jeu, nottament par exemple en opérant des vérifications si l'objet appartient à telle instance de classe, etc...
 
 Il est aussi très facile à lire, les fichiers sont séparés, avec peu de contenu, ce qui permet de s'y retrouver et aussi si quelqun reprend notre code il ne sera pas trop compliqué de comprendre comment sont organisées les choses.
 
