@@ -28,7 +28,7 @@ Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il f
 
 [Décrivez ici l'objectif initial du projet, ne cherchez pas à le minorer si vous n'avez pas tout fini, décrivez ce que vous avez voulu faire]
 
-Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et construire le burger. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches "ZQSD". L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches "LM". On peut voir l   a recette à réaliser en bas de l'écran du joueur.
+Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et réaliser des recettes. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches "ZQSD". L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches "LM". On peut voir l   a recette à réaliser en bas de l'écran du joueur. Le score du joueur est en haut à gauche de l'écran.
 
 ## Résultat
 
@@ -248,6 +248,26 @@ public class CookingPlate extends Machine implements InteractTile{
 }
 ```
 
+#### 4. [Observer]
+
+Notre observeur, appelé à des endroits stratégiques, permet de détécter une action et d'en réaliser une autre.
+
+Par exemple, à chaque fois que le joueur transforme un objet ou termine la recette, l'observeur est notifié et le score est augmenté.
+
+Notre observer est aussi un singleton car il n'y a qu'une instance d'observable dans le code (Il n'y a qu'un seul score).
+
+Ici on augmente par exemple le score avec le bonus de transformation d'un item :
+
+```java
+Score.getInstance().augmenterScore(t.bonus());
+```
+
+```java
+@Override
+public void update(Observable arg0, Object arg1) {
+    Score s = (Score)arg0;
+}
+```
 ---
 # Partie pédagogique
 
