@@ -28,7 +28,7 @@ Dans ces documents, il ne s'agit pas de cacher la poussière sous le tapis, il f
 
 [Décrivez ici l'objectif initial du projet, ne cherchez pas à le minorer si vous n'avez pas tout fini, décrivez ce que vous avez voulu faire]
 
-Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et réaliser des recettes. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches "ZQSD". L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches "LM". On peut voir l   a recette à réaliser en bas de l'écran du joueur. Le score du joueur est en haut à gauche de l'écran.
+Notre projet est inspiré du jeu Overcooked, et simule une cuisine en 2D "Rétro" ou l'objectif est de réaliser des burgers en effectuant des actions simples, comme par exemple couper des tomates, faire cuire un steak et réaliser des recettes. Le joueur apparait sur une map de cuisine, composée de "Blocs" Table, Sol ect... et peut se déplacer avec les touches "ZQSD". L'inventaire du joueur est limité par un seul objet et il peut interagir avec les blocs et items avec les touches "LM". On peut voir l   a recette à réaliser en bas de l'écran du joueur. Le score du joueur est en haut à gauche de l'écran, et à chaque action un son fx est joué pour avertir de l'augmentation du score.
 
 ## Résultat
 
