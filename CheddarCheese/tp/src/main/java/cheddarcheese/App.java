@@ -56,7 +56,7 @@ public class App extends Application implements Observer{
         String pathC = "sprites/char_s1.png";
         ImageView spriteC = spriteManager.createNewSprite(pathC);
 
-        Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[boardX-1][boardY-1]);
+        Player character = Player.getInstance(spriteC, playerPane, mapTiles, (Inventory)mapTiles[boardX-1][boardY-1]);
 
         gm = new GameManager(game, playerPane, scene, character, spriteManager, boardX-1, boardY-1);
     }

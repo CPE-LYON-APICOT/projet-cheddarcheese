@@ -203,10 +203,23 @@ public class Salad extends Food {
 
 #### 2. [Singleton]
 
-Notre singleton pattern est notre personnage :
+Notre singleton pattern est notre personnage. Il peut être seulement définit une seule fois partout dans le code.
 
 ```java
-Player character = new Player(spriteC, playerPane, mapTiles, (Inventory)mapTiles[boardX-1][boardY-1]);
+public static Player getInstance(ImageView image, Pane overlayPane, Tile tileset[][], Inventory inventory) {
+
+        if (instance == null) {
+            instance = new Player(image, overlayPane, tileset, inventory);
+        }
+
+        return instance;
+    }
+```
+
+On le définit comme suit :
+
+```java
+Player character = Player.getInstance(spriteC, playerPane, mapTiles, (Inventory)mapTiles[boardX-1][boardY-1]);
 ```
 
 #### 3. [Decorator]

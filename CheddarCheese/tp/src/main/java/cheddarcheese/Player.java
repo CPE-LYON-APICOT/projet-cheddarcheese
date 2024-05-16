@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class Player {
+    private static Player instance;
     private Inventory inventory;
     private double xPos;
     private double yPos;
@@ -15,7 +16,7 @@ public class Player {
     private ImageView image;
     private Tile tileset[][];
 
-    public Player(ImageView image, Pane overlayPane, Tile tileset[][], Inventory inventory) {
+    private Player(ImageView image, Pane overlayPane, Tile tileset[][], Inventory inventory) {
         this.image = image;
         this.xPos = 1 * 64;
         this.yPos = 1 * 64;
@@ -25,6 +26,15 @@ public class Player {
 
         overlayPane.getChildren().add(image);
         updateImagePosition();
+    }
+
+    public static Player getInstance(ImageView image, Pane overlayPane, Tile tileset[][], Inventory inventory) {
+
+        if (instance == null) {
+            instance = new Player(image, overlayPane, tileset, inventory);
+        }
+
+        return instance;
     }
 
     public double getX(){
