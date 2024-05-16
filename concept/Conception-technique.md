@@ -78,8 +78,8 @@ DEUXIEME RECETTE :
 [C'est ici que vous me dites ce que vous savez que vous avez mal fait, expliquez pourquoi vous avez fait ce choix (manque de temps, manque de compétence, trop pénible à faire, etc.)]
 
 - Génération de la map : pour l'instant, créer une map rectangulaire cause des soucis et l'inventaire est forcémment à la case en bas à droite pour rendre plus simple au niveau du code.
-      - Il n'y as pas de vérification si la map est correcte en terme d'emplacement, si un emplacement joueur est défini et si les outils sont accessible. (Question de temps)
-      - Définir une map trop grande (au dela de 14x14) peut causer des soucis au niveau de l'affichage où la map serait trop grande pour l'écran : cela est due au fait que chaque case est définie selon des pixels.
+- Il n'y as pas de vérification si la map est correcte en terme d'emplacement, si un emplacement joueur est défini et si les outils sont accessible. (Question de temps)
+- Définir une map trop grande (au dela de 14x14) peut causer des soucis au niveau de l'affichage où la map serait trop grande pour l'écran : cela est due au fait que chaque case est définie selon des pixels.
   
 - Comme par exemple dans Bin, certaines Tiles appellent des méthodes du gameManger en demandant ce dernier en paramêtre, ce qui a été mis en place pour gagner du temps au niveau du projet.
 - L'inventaire est une Tile qui contient un objet, et non pas juste un réel inventaire. Cela peut causer des soucis au niveau de l'affichage mais faire de cette façon est plus simple à coder.
@@ -92,8 +92,6 @@ DEUXIEME RECETTE :
 
 - La gestion de beaucoup de sprites se base sur la récupération de ces derniers par un chemin "sprites/" + nom + ".png" mais cela peut causer des soucis si le sprite n'est pas en png.
 - Aussi, pour les différentes Tiles de la map, le chemin des sprites est écrit en dur dans le code, ce qui nécéssite de modifier le code de cette partie si une sprite change de nom. Eventuellement on aurait pu envisager une manière plus propre de définir les sprites de chaque Tile, mais cela nous aurais pris plus de temps et aurait augmenté la complexité du code.
-
-******
 
 ### Difficultés rencontrées
 
@@ -175,7 +173,6 @@ Ce qui nous as fait rencontrés des soucis au niveau graphique avec un inventair
 
 Au niveau des recettes, il y avait des difficultés au niveau de comment récupérer ces dernières pour en choisir, au hasard, l'une d'entre elles à afficher.
 aussi les recettes ont du être lié à une base, qui est un ingrédient, et mettre en place un array qui contiendrait les ingrédients : Il n'y as pas de visuels pour les ingrédients ajoutés à une base.
-
 
 ### *Design Patterns* mis en oeuvre
 
@@ -265,5 +262,5 @@ Minimum 5 lignes]
 Très intérréssant et ludique. Le fait de pouvoir choisir le sujet de notre projet est pour nous un grand facteur de motivation sur l'envie d'apprendre à programmer en POO.
 De plus, on trouve que la POO et les designs patterns sont vraiment utiles comme décrits sur les points ci dessus, malgré parfois la difficulté de comprendre le fonctionnement des patterns qui se révèlent parfois assez abstraits et compliqué a visualiser.
 Enfin, le fait de pouvoir coder/tester visuellement en direct est aussi un facteur de motivation qui nous pousse à faire que "yes sa marche !".
-Cependant, on passe peut être trop de temps sur des soucis liés à la partie graphique, qui n'est pas l'objectif principale du projet.
+Cependant, on passe peut être trop de temps sur des soucis liés à la partie graphique, qui n'est pas l'objectif principal du projet.
 De ce projet on en garde un bon souvenir, qu'on va précieusement archivé pour peut être plus tard s'en servir pour s'aider sur d'autres projets en POO.
